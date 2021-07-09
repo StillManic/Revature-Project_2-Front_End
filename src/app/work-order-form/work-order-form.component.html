@@ -1,40 +1,80 @@
 <div class="row justify-content-center">
     <div class="col-6 text-center ">
         <h4 class="mb-3">New Work Order Form</h4>
-        <form class="needs-validation" novalidate="">
+        <form class="needs-validation" novalidate="" name="wokrOrder">
             <div class="row g-3">
+
                 <div class="col-sm-6">
-                    <label for="firstName" class="form-label">First name</label>
-                    <input type="text" class="form-control" id="firstName" placeholder="" value="" required="">
+                    <label class="form-label" for="customerSelect">Select Cusotmer</label>
+
+                    <select class="form-select" id="country" required="" [formControl]="customer" name="countrySelect">
+                        <!-- Add in customer data -->
+                        <option value="">Choose...</option>
+                        <option>United States</option>
+                    </select>
+                </div>
+
+
+                <!-- Add Data  -->
+                <div class="col-sm-6">
+                    <label for="vehicleId" class="form-label">Vehicle ID</label>
+                    <!-- Add in vehicle data -->
+
+                    <select class="form-select" id="country" required="" [formControl]="vehicleId" name="vehicleSelect">
+                        <option value="">Choose...</option>
+                        <option>United States</option>
+                    </select>
                     <div class="invalid-feedback">
-                        Valid first name is required.
+                        Valid ID is required.
                     </div>
                 </div>
 
                 <div class="col-sm-6">
-                    <label for="lastName" class="form-label">Last name</label>
-                    <input type="text" class="form-control" id="lastName" placeholder="" value="" required="">
+                    <label for="employeeId" class="form-label">Employee ID</label>
+                    <input type="text" class="form-control" id="employeeId" placeholder="" value="" required=""
+                        [formControl]="employeeId" name="employeeId">
                     <div class="invalid-feedback">
-                        Valid last name is required.
+                        Valid Employee ID is required.
                     </div>
                 </div>
-<!-- Add Data  -->
+
                 <div class="col-sm-6">
-                    <label for="lastName" class="form-label">Last name</label>
-                    <input type="text" class="form-control" id="lastName" placeholder="" value="" required="">
+                    <label for="startDate" class="form-label">Start Date</label>
+                    <input type="date" class="form-control" id="startDate" placeholder="" value="" required=""
+                        [formControl]="startDate" name="startDate">
                     <div class="invalid-feedback">
-                        Valid last name is required.
+                        Valid Start Date is required.
                     </div>
+
+
                 </div>
 
-
-
-
+                <div class="col">
+                    <label for="description" class="form-label">Description</label>
+                    <input type="text" class="form-control" id="description" placeholder="" value="" required=""
+                        [formControl]="description" />
+                    <div class="invalid-feedback">
+                        Valid descrition is required.
+                    </div>
+                </div>
             </div>
-
-
             <hr class="my-4">
-            <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+            <label class="form-label" for="customerSelect">Select Parts</label>
+            <ul style="list-style: none;">
+                <li>
+                    <select class="form-select" multiple aria-label="multiple select example" name="partSelect"
+                        [formControl]="partsSelect">
+                        <option selected>Open this select menu</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </li>
+            </ul>
+
+            <button class="w-100 btn btn-primary btn-lg" (click)="addWorkOrder()">Submit
+                Form</button>
         </form>
+
     </div>
 </div>
