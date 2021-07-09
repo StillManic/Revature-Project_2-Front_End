@@ -4,4 +4,5 @@ export interface WorkOrder {
     employeeId: string;
     description: string;
     startDate: string;
+    cost: number;
 }
