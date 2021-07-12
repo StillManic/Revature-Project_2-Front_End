@@ -1,7 +1,8 @@
-import { PartLookUp } from './part-lookup'
-import { WorkOrder } from './work-order';
+import { PartLookUp } from "./part-lookup";
+import { WorkOrder } from "./work-order";
+
 export interface PartList {
     id?: number;
-    partId: PartLookUp;
-    orderId: WorkOrder;
+    part: PartLookUp;
+    order: WorkOrder;
 }
