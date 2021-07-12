@@ -7,7 +7,8 @@ import { AddCustomerFormComponent } from './add-customer-form/add-customer-form.
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'workorder', component: WorkOrderFormComponent },
-  { path: 'addCustomer', component: AddCustomerFormComponent }
+  { path: 'addCustomer', component: AddCustomerFormComponent },
+  
   
 ];
 

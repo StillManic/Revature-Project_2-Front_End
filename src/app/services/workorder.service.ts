@@ -45,4 +45,11 @@ export class WorkorderService {
     )
   }
 
+
+  getAllWorkOrder(): Observable<WorkOrder[]> {
+    return this.http.get<WorkOrder[]>(this.url).pipe(
+      catchError(this.handleError<WorkOrder[]>(`getAllWorkOrder`))
+    )
+  }
+
 }

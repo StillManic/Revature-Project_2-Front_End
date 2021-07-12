@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { WorkOrder } from '../interface/work-order';
+import { WorkorderService } from '../services/workorder.service';
 
 @Component({
   selector: 'app-cards',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardsComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private workOrderService: WorkorderService) { }
+  workOrders: WorkOrder[] = [];
   ngOnInit(): void {
+    this.getAllWorkOrder()
   }
 
+  getAllWorkOrder(): void {
+    this.workOrderService.getAllWorkOrder().subscribe(
+      workOrders => {
+
+        this.workOrders = workOrders
+      }
+    )
+  }
 }

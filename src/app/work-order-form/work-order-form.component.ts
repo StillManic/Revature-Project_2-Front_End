@@ -30,7 +30,7 @@ export class WorkOrderFormComponent implements OnInit {
   workOrder: WorkOrder = {
     id: '',
     vehicleId: {
-      customer: {
+      customerId: {
         firstName: '',
         lastName: '',
         phoneNumber: '',
@@ -106,11 +106,11 @@ export class WorkOrderFormComponent implements OnInit {
 
   addWorkOrder(): void {
     //Makes sure input fields are not null;
-    // if (!this.vehicleId.value) return;
-    // if (!this.customer.value) return;
-    // if (!this.employeeId.value) return;
-    // if (!this.startDate.value) return;
-    // if (!this.description.value) return;
+    if (!this.vehicleId.value) return;
+    if (!this.customer.value) return;
+    if (!this.employeeId.value) return;
+    if (!this.startDate.value) return;
+    if (!this.description.value) return;
 
     this.vehicleService.getVehicleById(this.vehicleId.value).subscribe(
       vehicles => {
@@ -127,7 +127,7 @@ export class WorkOrderFormComponent implements OnInit {
     this.workOrder.cost = this.total;
     this.workOrder.complete = false;
 
-    console.log(this.workOrder)
+    // console.log(this.workOrder)
 
     this.workOrderService.addWorkOrder(this.workOrder).subscribe(workOrder => console.log(workOrder));
 
