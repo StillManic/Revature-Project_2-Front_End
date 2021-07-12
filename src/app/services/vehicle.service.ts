@@ -2,37 +2,20 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
-import { Customer } from '../interface/customer';
+import { Vehicle } from '../interface/vehicle';
 
 @Injectable({
   providedIn: 'root'
 })
-
-export class CustomerService {
+export class VehicleService {
 
   constructor(private http: HttpClient) { }
 
+  url = `http://localhost:8080/vehicles`
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
-
-  getAllCustomer(): Observable<Customer[]> {
-    //Add in URL from server;
-    const customerUrl = `http://localhost:8080/customers`
-    return this.http.get<Customer[]>(customerUrl).pipe(
-      catchError(this.handleError<Customer[]>(`getResident`, []))
-    )
-  }
-
-
-  addCustomer(customer: Customer): Observable<Customer> {
-    const url = `http://localhost:8080/customers/add`
-    return this.http.post<Customer>(
-      url, customer, this.httpOptions).pipe(
-        catchError(this.handleError<Customer>('addCustomer'))
-      )
-  }
 
 
   /**
@@ -53,5 +36,17 @@ export class CustomerService {
     };
   }
 
-}
+  getAllVehicle(): Observable<Vehicle[]> {
+    //Add in URL from server;
+    return this.http.get<Vehicle[]>(this.url).pipe(
+      catchError(this.handleError<Vehicle[]>(`getAllVehicle`, []))
+    )
+  }
 
+  getVehicleByCustomerId(id: number): Observable<Vehicle[]> {
+    const getByCustomerUrl = this.url + `/customer/${id}`
+    return this.http.get<Vehicle[]>(getByCustomerUrl).pipe(
+      catchError(this.handleError<Vehicle[]>(`getByCustomerId`))
+    )
+  }
+}

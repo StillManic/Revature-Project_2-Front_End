@@ -10,7 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { CardsComponent } from './cards/cards.component';
 import { WorkOrderFormComponent } from './work-order-form/work-order-form.component';
 import { AddCustomerFormComponent } from './add-customer-form/add-customer-form.component';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +25,9 @@ import { AddCustomerFormComponent } from './add-customer-form/add-customer-form.
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
