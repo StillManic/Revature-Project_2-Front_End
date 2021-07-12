@@ -10,7 +10,10 @@
                     <select class="form-select" id="country" required="" [formControl]="customer" name="countrySelect">
                         <!-- Add in customer data -->
                         <option value="">Choose...</option>
-                        <option>United States</option>
+
+                        <option *ngFor="let customer of customerArray">{{customer.id}}
+                            {{customer.firstName}}</option>
+
                     </select>
                 </div>
 
@@ -20,9 +23,11 @@
                     <label for="vehicleId" class="form-label">Vehicle ID</label>
                     <!-- Add in vehicle data -->
 
-                    <select class="form-select" id="country" required="" [formControl]="vehicleId" name="vehicleSelect">
-                        <option value="">Choose...</option>
-                        <option>United States</option>
+                    <select class="form-select" id="country" required="" [formControl]="vehicleId" name="vehicleSelect"
+                    (click)="getVehicleByCustomer()"
+                    >
+                        <option default>Choose...</option>
+                        <option *ngIf="customerArray.length >= 1">United States</option>
                     </select>
                     <div class="invalid-feedback">
                         Valid ID is required.
@@ -63,15 +68,16 @@
             <ul style="list-style: none;">
                 <li>
                     <select class="form-select" multiple aria-label="multiple select example" name="partSelect"
-                        [formControl]="partsSelect">
+                        [formControl]="partsSelect" (click)="calculateTotal()">
                         <option selected>Open this select menu</option>
-                        <option value="1">One</option>
+                        <option value="1.2">One</option>
                         <option value="2">Two</option>
                         <option value="3">Three</option>
                     </select>
                 </li>
             </ul>
-
+            <hr class="my-4">
+            <h4 ngFor="">Total Cost: ${{total}}</h4>
             <button class="w-100 btn btn-primary btn-lg" (click)="addWorkOrder()">Submit
                 Form</button>
         </form>
