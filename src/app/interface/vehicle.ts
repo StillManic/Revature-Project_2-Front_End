@@ -2,7 +2,7 @@ import { Customer } from './customer';
 
 export interface Vehicle {
     id?: number;
-    customer: Customer;
+    customerId: Customer;
     vin: number;
     make: string;
     model: string;

@@ -3,8 +3,8 @@ import { WorkOrder } from "./work-order";
 export default function createWorkOrder(): WorkOrder {
     return {
         id: '',
-        vehicle: {
-            customer: {
+        vehicleId: {
+            customerId: {
                 firstName: '',
                 lastName: '',
                 phoneNumber: '',
@@ -19,8 +19,8 @@ export default function createWorkOrder(): WorkOrder {
         description: '',
         cost: 0,
         date: '',
-        isCompleted: false,
-        employee: {
+        complete: false,
+        employeeId: {
             jobTitle: '',
             username: '',
             password: ''
