@@ -11,7 +11,7 @@ import { Customer } from '../interface/customer';
 export class CustomerService {
 
   constructor(private http: HttpClient) { }
-
+  url: string = `http://localhost:8080/customers`;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -19,17 +19,17 @@ export class CustomerService {
 
   getAllCustomer(): Observable<Customer[]> {
     //Add in URL from server;
-    const customerUrl = `http://localhost:8080/customers`
-    return this.http.get<Customer[]>(customerUrl).pipe(
+    // const customerUrl = `http://localhost:8080/customers`
+    return this.http.get<Customer[]>(this.url).pipe(
       catchError(this.handleError<Customer[]>(`getResident`, []))
     )
   }
 
 
   addCustomer(customer: Customer): Observable<Customer> {
-    const url = `http://localhost:8080/customers/add`
+    // const url = `http://localhost:8080/customers/add`
     return this.http.post<Customer>(
-      url, customer, this.httpOptions).pipe(
+      this.url + '/add', customer, this.httpOptions).pipe(
         catchError(this.handleError<Customer>('addCustomer'))
       )
   }

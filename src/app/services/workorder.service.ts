@@ -2,16 +2,17 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
-import { Vehicle } from '../interface/vehicle';
+import { PartLookUp} from '../interface/part-lookup';
+import { WorkOrder } from '../interface/work-order';
 
 @Injectable({
   providedIn: 'root'
 })
-export class VehicleService {
+export class WorkorderService {
 
   constructor(private http: HttpClient) { }
 
-  url = `http://localhost:8080/vehicles`
+  url = `http://localhost:8080/workorders`
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -36,24 +37,12 @@ export class VehicleService {
     };
   }
 
-  getAllVehicle(): Observable<Vehicle[]> {
-    //Add in URL from server;
-    return this.http.get<Vehicle[]>(this.url).pipe(
-      catchError(this.handleError<Vehicle[]>(`getAllVehicle`, []))
+  addWorkOrder(workorder: WorkOrder): Observable<WorkOrder> {
+    let url = this.url + "/add"
+    console.log(workorder)
+    return this.http.post<WorkOrder>(url, workorder, this.httpOptions).pipe(
+      catchError(this.handleError<WorkOrder>(`addWorkOrder`))
     )
   }
 
-  getVehicleByCustomerId(id: number): Observable<Vehicle[]> {
-    const getByCustomerUrl = this.url + `/customer/${id}`
-    return this.http.get<Vehicle[]>(getByCustomerUrl).pipe(
-      catchError(this.handleError<Vehicle[]>(`getByCustomerId`))
-    )
-  }
-
-  getVehicleById(id: number): Observable<Vehicle> {
-    const url: string = this.url + `/${id}`
-    return this.http.get<Vehicle>(url).pipe(
-      catchError(this.handleError<Vehicle>(`getById`))
-    )
-  }
 }
