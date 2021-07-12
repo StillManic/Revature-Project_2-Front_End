@@ -7,7 +7,8 @@
                 <div class="col-sm-6">
                     <label class="form-label" for="customerSelect">Select Cusotmer</label>
 
-                    <select class="form-select" id="country" required="" [formControl]="customer" name="countrySelect">
+                    <select class="form-select" id="country" required="" [formControl]="customer" name="countrySelect"
+                        (click)="getVehicleByCustomer()">
                         <!-- Add in customer data -->
                         <option value="">Choose...</option>
 
@@ -24,10 +25,9 @@
                     <!-- Add in vehicle data -->
 
                     <select class="form-select" id="country" required="" [formControl]="vehicleId" name="vehicleSelect"
-                    (click)="getVehicleByCustomer()"
-                    >
+                        *ngIf="customer.value">
                         <option default>Choose...</option>
-                        <option *ngIf="customerArray.length >= 1">United States</option>
+                        <option *ngFor="let vehicle of vehicleArray">{{vehicle.id}}</option>
                     </select>
                     <div class="invalid-feedback">
                         Valid ID is required.
@@ -50,8 +50,6 @@
                     <div class="invalid-feedback">
                         Valid Start Date is required.
                     </div>
-
-
                 </div>
 
                 <div class="col">
@@ -68,11 +66,9 @@
             <ul style="list-style: none;">
                 <li>
                     <select class="form-select" multiple aria-label="multiple select example" name="partSelect"
-                        [formControl]="partsSelect" (click)="calculateTotal()">
-                        <option selected>Open this select menu</option>
-                        <option value="1.2">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        [formControl]="partsSelect" (click)="calculateTotal()" *ngIf="parts">
+                    
+                        <option *ngFor="let part of parts">{{part.name}} {{part.price}}</option>
                     </select>
                 </li>
             </ul>
