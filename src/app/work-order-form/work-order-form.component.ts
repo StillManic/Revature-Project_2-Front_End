@@ -6,7 +6,9 @@ import { Vehicle } from '../interface/vehicle';
 import { PartLookUp } from '../interface/part-lookup'
 import { CustomerService } from '../services/customer.service';
 import { VehicleService } from '../services/vehicle.service';
-
+import { PartlookupService } from '../services/partlookup.service';
+import { EmployeeService } from '../services/employee.service';
+import { WorkorderService } from '../services/workorder.service';
 @Component({
   selector: 'app-work-order-form',
   templateUrl: './work-order-form.component.html',
@@ -14,7 +16,7 @@ import { VehicleService } from '../services/vehicle.service';
 })
 export class WorkOrderFormComponent implements OnInit {
 
-  constructor(private customerService: CustomerService, private vehicleService: VehicleService) { }
+  constructor(private customerService: CustomerService, private vehicleService: VehicleService, private partLookUpService: PartlookupService, private employeeService: EmployeeService, private workOrderService: WorkorderService) { }
 
   vehicleId = new FormControl('');
   customer = new FormControl('');
@@ -25,20 +27,49 @@ export class WorkOrderFormComponent implements OnInit {
   partsSelect = new FormControl('');
   total: number = 0;
   //question mark means undefined at start
-  workOrder?: WorkOrder;
+  workOrder: WorkOrder = {
+    id: '',
+    vehicleId: {
+      customerId: {
+        firstName: '',
+        lastName: '',
+        phoneNumber: '',
+        email: ''
+      },
+      mileage: 0,
+      vin: 0,
+      make: '',
+      model: '',
+      year: 0
+    },
+    description: '',
+    cost: 0,
+    date: '',
+    complete: false,
+    employeeId: {
+      jobTitle: '',
+      username: '',
+      password: ''
+    }
+
+  };
   partLookUp?: PartLookUp[];
   customerArray: Customer[] = [];
   vehicleArray: Vehicle[] = [];
+  parts?: PartLookUp[];
+
+  vehicle?: Vehicle;
 
   ngOnInit(): void {
     this.getAllCustomers();
+    this.getAllParts();
   }
 
 
   getAllCustomers(): void {
     this.customerService.getAllCustomer().subscribe(customer => {
       this.customerArray = customer;
-      console.log(this.customerArray)
+      // console.log(this.customerArray)
     })
   }
 
@@ -48,45 +79,59 @@ export class WorkOrderFormComponent implements OnInit {
     this.vehicleService.getVehicleByCustomerId(selectedCustomer).subscribe(
       vehicles => {
         this.vehicleArray = vehicles
-        console.log(this.vehicleArray)
+        // console.log(this.vehicleArray)
       }
     )
+
   }
 
   calculateTotal(): void {
     if (this.partsSelect.value.length >= 1) {
       this.total = 0;
       for (let value of this.partsSelect.value) {
-
-        this.total += parseInt(value);
+        let valueString = value.split(' ')
+        let price = valueString[1]
+        this.total += parseInt(price);
       }
     }
   }
 
-  addWorkOrder(): void {
-    // if (!this.vehicleId.value) return;
-    // if (!this.customer.value) return;
-    // if (!this.employeeId.value) return;
-    // if (!this.startDate.value) return;
-    // if (!this.description.value) return;
+  getAllParts(): void {
+    this.partLookUpService.getAllParts().subscribe(
+      parts => {
+        this.parts = parts;
+      }
+    )
+  }
 
-    // this.workOrder = {
-    //   vehicleId: this.vehicleId.value,
-    //   employeeId: this.employeeId.value,
-    //   description: this.description.value,
-    //   startDate: this.startDate.value,
-    //   cost: this.total
-    // }
+  addWorkOrder(): void {
+    //Makes sure input fields are not null;
+    if (!this.vehicleId.value) return;
+    if (!this.customer.value) return;
+    if (!this.employeeId.value) return;
+    if (!this.startDate.value) return;
+    if (!this.description.value) return;
+
+    this.vehicleService.getVehicleById(this.vehicleId.value).subscribe(
+      vehicles => {
+        // this.vehicle = vehicles;
+        this.workOrder.vehicleId = vehicles
+      }
+    )
+    this.employeeService.getEmployeeById(this.employeeId.value).subscribe(employee => {
+      this.workOrder.employeeId = employee
+    })
+
+    this.workOrder.description = this.description.value;
+    this.workOrder.date = this.startDate.value;
+    this.workOrder.cost = this.total;
+    this.workOrder.complete = false;
 
     // console.log(this.workOrder)
-    console.log(this.customer.value.split(' ')[0]) // get ID of customer.
-    this.vehicleService.getVehicleByCustomerId(1).subscribe(
-      vehicle => console.log(vehicle)
-    )
-    this.getVehicleByCustomer()
 
-    // this.partLookUp = this.partsSelect.value
-    // console.log(this.partLookUp)
-    //create function to loop through each part and add it to the database.
+    this.workOrderService.addWorkOrder(this.workOrder).subscribe(workOrder => console.log(workOrder));
+
+
+
   }
 }

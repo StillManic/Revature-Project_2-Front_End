@@ -3,10 +3,11 @@ import { Employee } from './employee';
 
 export interface WorkOrder {
     id?: string;
-    vehicle: Vehicle;
-    employee: Employee;
+    vehicleId: Vehicle;
+    employeeId: Employee;
     description: string;
     date: string;
     cost: number;
-    isCompleted: boolean;
+    complete: boolean;
 }
+
