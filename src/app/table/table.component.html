@@ -11,17 +11,16 @@
                 <th scope="col">Total Cost</th>
             </tr>
         </thead>
-        
+
         <tbody>
             <!-- insert data into here when you get it -->
-            <tr routerLink="/workorder" *ngFor="let workOrder of workOrders"> 
+            <tr *ngFor="let workOrder of workOrders" routerLink="/viewOrder/{{workOrder.vehicleId.customerId.id}}">
                 <td>{{workOrder.id}}</td>
                 <td>{{workOrder.vehicleId.customerId.firstName}} {{workOrder.vehicleId.customerId.lastName}}</td>
                 <td>{{workOrder.date}}</td>
                 <td>{{workOrder.vehicleId.id}}</td>
                 <td>{{workOrder.cost}}</td>
             </tr>
-
         </tbody>
     </table>
 </div>
