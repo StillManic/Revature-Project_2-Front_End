@@ -38,9 +38,8 @@ export class WorkorderService {
   }
 
   addWorkOrder(workorder: WorkOrder): Observable<WorkOrder> {
-    let url = this.url + "/add"
     console.log(workorder)
-    return this.http.post<WorkOrder>(url, workorder, this.httpOptions).pipe(
+    return this.http.post<WorkOrder>(this.url + '/add', workorder, this.httpOptions).pipe(
       catchError(this.handleError<WorkOrder>(`addWorkOrder`))
     )
   }

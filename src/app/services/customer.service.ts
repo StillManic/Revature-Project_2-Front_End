@@ -18,8 +18,6 @@ export class CustomerService {
   };
 
   getAllCustomer(): Observable<Customer[]> {
-    //Add in URL from server;
-    // const customerUrl = `http://localhost:8080/customers`
     return this.http.get<Customer[]>(this.url).pipe(
       catchError(this.handleError<Customer[]>(`getResident`, []))
     )
@@ -27,9 +25,7 @@ export class CustomerService {
 
 
   addCustomer(customer: Customer): Observable<Customer> {
-    // const url = `http://localhost:8080/customers/add`
-    return this.http.post<Customer>(
-      this.url + '/add', customer, this.httpOptions).pipe(
+    return this.http.post<Customer>(this.url + '/add', customer, this.httpOptions).pipe(
         catchError(this.handleError<Customer>('addCustomer'))
       )
   }

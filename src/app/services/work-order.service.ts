@@ -11,31 +11,22 @@ import { WorkOrder } from '../interface/work-order';
   providedIn: 'root'
 })
 export class WorkOrderService {
-
   constructor(private http: HttpClient) { }
+  url = 'http://localhost:8080/workorders';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
   getAllWorkOrders(): Observable<WorkOrder[]> {
-    const workorderUrl = `http://localhost:8080/workorders`
-    return this.http.get<WorkOrder[]>(workorderUrl).pipe(
+    return this.http.get<WorkOrder[]>(this.url).pipe(
       catchError(this.handleError<WorkOrder[]>(`getAllWorkOrders`, []))
     );
   }
 
   getWorkOrder(id: number): Observable<WorkOrder> {
-    const url = `http://localhost:8080/workorders/` + id;
-    return this.http.get<WorkOrder>(url).pipe(
+    return this.http.get<WorkOrder>(this.url + '/' + id).pipe(
       catchError(this.handleError<WorkOrder>(`getWorkOrder`, ))
-    );
-  }
-
-  getParts(id: number): Observable<PartList[]> {
-    const url = `http://localhost:8080/partlists/order/` + id;
-    return this.http.get<PartList[]>(url).pipe(
-      catchError(this.handleError<PartList[]>(`getParts`, []))
     );
   }
 

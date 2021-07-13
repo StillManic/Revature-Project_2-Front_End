@@ -43,7 +43,7 @@ export class PartlookupService {
   }
 
   getPartById(partId: number): Observable<PartLookUp> {
-    return this.http.get<PartLookUp>(`${this.url}/${partId}`).pipe(
+    return this.http.get<PartLookUp>(this.url + '/' + partId).pipe(
       catchError(this.handleError<PartLookUp>('getPartById'))
     )
   }
