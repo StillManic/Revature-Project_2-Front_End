@@ -14,7 +14,7 @@
 
         <tbody>
             <!-- insert data into here when you get it -->
-            <tr *ngFor="let workOrder of workOrders" routerLink="/viewOrder/{{workOrder.vehicleId.customerId.id}}">
+            <tr *ngFor="let workOrder of workOrders" routerLink="/viewOrder/{{workOrder.id}}">
                 <td>{{workOrder.id}}</td>
                 <td>{{workOrder.vehicleId.customerId.firstName}} {{workOrder.vehicleId.customerId.lastName}}</td>
                 <td>{{workOrder.date}}</td>
