@@ -20,6 +20,7 @@ export class CardsComponent implements OnInit {
       workOrders => {
 
         this.workOrders = workOrders
+        console.log(this.workOrders)
       }
     )
   }

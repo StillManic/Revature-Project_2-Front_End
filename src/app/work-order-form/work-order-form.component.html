@@ -68,7 +68,7 @@
                     <select class="form-select" multiple aria-label="multiple select example" name="partSelect"
                         [formControl]="partsSelect" (click)="calculateTotal()" *ngIf="parts">
                     
-                        <option *ngFor="let part of parts">{{part.name}} {{part.price}}</option>
+                        <option *ngFor="let part of parts" >{{part.id}} {{part.name}} {{part.price}}</option>
                     </select>
                 </li>
             </ul>

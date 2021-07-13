@@ -2,16 +2,16 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
-import { PartLookUp} from '../interface/part-lookup';
+import { PartList } from '../interface/part-list';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class PartlookupService {
+export class PartListService {
 
   constructor(private http: HttpClient) { }
-
-  url = `http://localhost:8080/parts`
+  url = `http://localhost:8080/partlists`
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -36,17 +36,18 @@ export class PartlookupService {
     };
   }
 
-  getAllParts(): Observable<PartLookUp[]> {
-    return this.http.get<PartLookUp[]>(this.url).pipe(
-      catchError(this.handleError<PartLookUp[]>('getAllParts'))
-    )
+  getPartLists(): Observable<PartList[]> {
+    return this.http.get<PartList[]>(this.url, this.httpOptions)
+      .pipe(
+        map((response: PartList[]) => response),
+        catchError(this.handleError('getPartLists', []))
+      );
   }
 
-  getPartById(partId: number): Observable<PartLookUp> {
-    return this.http.get<PartLookUp>(`${this.url}/${partId}`).pipe(
-      catchError(this.handleError<PartLookUp>('getPartById'))
+  //add partList
+  addPartList(partList: PartList): Observable<PartList> {
+    return this.http.post<PartList>(this.url + "/add", partList, this.httpOptions).pipe(
+      map((response: PartList) => response),
     )
   }
-
-  
 }
