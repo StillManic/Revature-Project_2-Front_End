@@ -5,7 +5,7 @@ import { WorkOrderFormComponent } from './work-order-form/work-order-form.compon
 import { AddCustomerFormComponent } from './add-customer-form/add-customer-form.component';
 import { WorkOrderViewComponent } from './work-order-view/work-order-view.component';
 import { LoginComponent } from './login/login.component';
-import { ViewhistoryComponent } from './viewhistory/viewhistory.component';
+// import { ViewhistoryComponent } from './viewhistory/viewhistory.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'addCustomer', component: AddCustomerFormComponent },
   { path: 'viewOrder/:id', component: WorkOrderViewComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'viewhistory', component: ViewhistoryComponent }
+  // { path: 'viewhistory', component: ViewhistoryComponent }
   
 ];
 
