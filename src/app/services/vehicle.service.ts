@@ -44,15 +44,13 @@ export class VehicleService {
   }
 
   getVehicleByCustomerId(id: number): Observable<Vehicle[]> {
-    const getByCustomerUrl = this.url + `/customer/${id}`
-    return this.http.get<Vehicle[]>(getByCustomerUrl).pipe(
+    return this.http.get<Vehicle[]>(this.url + `/customer/` + id).pipe(
       catchError(this.handleError<Vehicle[]>(`getByCustomerId`))
     )
   }
 
   getVehicleById(id: number): Observable<Vehicle> {
-    const url: string = this.url + `/${id}`
-    return this.http.get<Vehicle>(url).pipe(
+    return this.http.get<Vehicle>(this.url + '/' + id).pipe(
       catchError(this.handleError<Vehicle>(`getById`))
     )
   }

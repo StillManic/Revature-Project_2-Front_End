@@ -36,8 +36,7 @@ export class EmployeeService {
   }
 
   getEmployeeById(id: number): Observable<Employee> {
-    let url = this.url + `/${id}`
-    return this.http.get<Employee>(url).pipe(
+    return this.http.get<Employee>(this.url + '/' + id).pipe(
       catchError(this.handleError<Employee>(`getEmployee id= ${id}`))
     )
   }

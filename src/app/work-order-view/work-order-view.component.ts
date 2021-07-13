@@ -5,6 +5,7 @@ import { PartList } from '../interface/part-list';
 import { PartLookUp } from '../interface/part-lookup';
 import { Vehicle } from '../interface/vehicle';
 import { WorkOrder } from '../interface/work-order';
+import { PartListService } from '../services/part-list.service';
 import { WorkOrderService } from '../services/work-order.service';
 
 @Component({
@@ -14,7 +15,7 @@ import { WorkOrderService } from '../services/work-order.service';
 })
 export class WorkOrderViewComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private workOrderService: WorkOrderService) { }
+  constructor(private route: ActivatedRoute, private workOrderService: WorkOrderService, private partListService: PartListService) { }
 
   workOrder?: WorkOrder;
   customer?: Customer;
@@ -32,7 +33,7 @@ export class WorkOrderViewComponent implements OnInit {
 
   getParts(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.workOrderService.getParts(id).subscribe(parts => {
+    this.partListService.getParts(id).subscribe(parts => {
       this.parts = parts;
       if (parts.length == 0) {
         this.getWorkOrder(id);

@@ -46,8 +46,14 @@ export class PartListService {
 
   //add partList
   addPartList(partList: PartList): Observable<PartList> {
-    return this.http.post<PartList>(this.url + "/add", partList, this.httpOptions).pipe(
+    return this.http.post<PartList>(this.url + '/add', partList, this.httpOptions).pipe(
       map((response: PartList) => response),
     )
+  }
+
+  getParts(id: number): Observable<PartList[]> {
+    return this.http.get<PartList[]>(this.url + '/order' + id).pipe(
+      catchError(this.handleError<PartList[]>(`getParts`, []))
+    );
   }
 }
