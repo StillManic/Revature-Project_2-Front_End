@@ -10,6 +10,7 @@ import { PartlookupService } from '../services/partlookup.service';
 import { EmployeeService } from '../services/employee.service';
 import { WorkorderService } from '../services/workorder.service';
 import { PartList } from '../interface/part-list';
+import { PartListService } from '../services/part-list.service';
 @Component({
   selector: 'app-work-order-form',
   templateUrl: './work-order-form.component.html',
@@ -17,7 +18,7 @@ import { PartList } from '../interface/part-list';
 })
 export class WorkOrderFormComponent implements OnInit {
 
-  constructor(private customerService: CustomerService, private vehicleService: VehicleService, private partLookUpService: PartlookupService, private employeeService: EmployeeService, private workOrderService: WorkorderService) { }
+  constructor(private customerService: CustomerService, private vehicleService: VehicleService, private partLookUpService: PartlookupService, private employeeService: EmployeeService, private workOrderService: WorkorderService, private partListService: PartListService) { }
 
   vehicleId = new FormControl('');
   customer = new FormControl('');
@@ -61,7 +62,7 @@ export class WorkOrderFormComponent implements OnInit {
 
   vehicle?: Vehicle;
   partList?: PartList;
-  
+
   ngOnInit(): void {
     this.getAllCustomers();
     this.getAllParts();
@@ -151,7 +152,19 @@ export class WorkOrderFormComponent implements OnInit {
     // console.log(this.workOrder)
 
     this.workOrderService.addWorkOrder(this.workOrder).subscribe(workOrder => {
-
+      for (let value of this.partsSelect.value) {
+        let valueString = value.split(' ')
+        let partId = valueString[0]
+        let partPrice = valueString[1]
+        this.partLookUpService.getPartById
+          (partId).subscribe(parts => {
+            this.partList = {
+              part: parts,
+              order: workOrder,
+            }
+            this.partListService.addPartList(this.partList).subscribe(partList => { console.log(partList) })
+          })
+      }
 
     });
 
