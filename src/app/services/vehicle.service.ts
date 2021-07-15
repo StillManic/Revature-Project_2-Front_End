@@ -3,18 +3,18 @@ import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Vehicle } from '../interface/vehicle';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VehicleService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private cookieService: CookieService) { }
 
   url = `http://localhost:8080/vehicles`
 
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': this.cookieService.get('auth') })
   };
 
 
@@ -38,19 +38,19 @@ export class VehicleService {
 
   getAllVehicle(): Observable<Vehicle[]> {
     //Add in URL from server;
-    return this.http.get<Vehicle[]>(this.url).pipe(
+    return this.http.get<Vehicle[]>(this.url, this.httpOptions).pipe(
       catchError(this.handleError<Vehicle[]>(`getAllVehicle`, []))
     )
   }
 
   getVehicleByCustomerId(id: number): Observable<Vehicle[]> {
-    return this.http.get<Vehicle[]>(this.url + `/customer/` + id).pipe(
+    return this.http.get<Vehicle[]>(this.url + `/customer/` + id, this.httpOptions).pipe(
       catchError(this.handleError<Vehicle[]>(`getByCustomerId`))
     )
   }
 
   getVehicleById(id: number): Observable<Vehicle> {
-    return this.http.get<Vehicle>(this.url + '/' + id).pipe(
+    return this.http.get<Vehicle>(this.url + '/' + id, this.httpOptions).pipe(
       catchError(this.handleError<Vehicle>(`getById`))
     )
   }

@@ -1,0 +1,14 @@
+<h2>Login Page</h2>
+
+<div>
+  <label for="username">User Name: </label>
+  <input id="username" #userName />
+  
+  <label for="password">Password: </label>
+  <input id="password" #password />
+
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button class="add-button" (click)="getLogin(userName.value, password.value); userName.value=''; password.value=''">
+    Login
+  </button>
+</div>

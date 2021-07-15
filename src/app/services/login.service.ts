@@ -1,25 +1,29 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { PartLookUp} from '../interface/part-lookup';
-import { WorkOrder } from '../interface/work-order';
+import { Employee } from '../interface/employee';
 
 @Injectable({
   providedIn: 'root'
 })
-export class WorkorderService {
+export class LoginService {
 
-  constructor(private http: HttpClient) { }
-
-  url = `http://localhost:8080/workorders`
-
+  url: string = 'http://localhost:8080/employees/log_in';
+  
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
+  
+  constructor(private http: HttpClient) { }
+
+  // POST
+  getLogin(login: Employee): Observable<string> {
+    return this.http.post<string>(this.url, login, this.httpOptions);
+  }
 
 
-  /**
+/**
 * Handle Http operation that failed.
 * Let the app continue.
 * @param operation - name of the operation that failed
@@ -36,20 +40,4 @@ export class WorkorderService {
       return of(result as T);
     };
   }
-
-  addWorkOrder(workorder: WorkOrder): Observable<WorkOrder> {
-    console.log(workorder)
-    return this.http.post<WorkOrder>(this.url + '/add', workorder, this.httpOptions).pipe(
-      catchError(this.handleError<WorkOrder>(`addWorkOrder`))
-    )
-  }
-
-  
-
-  getAllWorkOrder(): Observable<WorkOrder[]> {
-    return this.http.get<WorkOrder[]>(this.url).pipe(
-      catchError(this.handleError<WorkOrder[]>(`getAllWorkOrder`))
-    )
-  }
-
 }

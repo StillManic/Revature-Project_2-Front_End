@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WorkOrder } from '../interface/work-order';
-import { WorkorderService } from '../services/workorder.service';
+import { WorkOrderService } from '../services/work-order.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -10,22 +10,22 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class TableComponent implements OnInit {
 
-  constructor(private workOrderService: WorkorderService, private route: ActivatedRoute) { }
+  constructor(private workOrderService: WorkOrderService, private route: ActivatedRoute) { }
 
 
   workOrders: WorkOrder[] = [];
 
   id: any;
   ngOnInit(): void {
-    this.getAllWorkOrder();
+    this.getAllWorkOrders();
     this.id = Number(this.route.snapshot.paramMap.get('id'))
 
 
   }
 
-  getAllWorkOrder(): void {
+  getAllWorkOrders(): void {
 
-    this.workOrderService.getAllWorkOrder().subscribe(
+    this.workOrderService.getAllWorkOrders().subscribe(
       workOrders => {
         let ran = workOrders[0].vehicleId.customerId.firstName;
         console.log(ran)

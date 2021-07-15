@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Customer } from '../interface/customer';
 import { PartList } from '../interface/part-list';
 import { PartLookUp } from '../interface/part-lookup';
@@ -36,6 +36,7 @@ export class WorkOrderViewComponent implements OnInit {
     this.partListService.getParts(id).subscribe(parts => {
       this.parts = parts;
       if (parts.length == 0) {
+        console.log("parts array empty");
         this.getWorkOrder(id);
       } else {
         this.setFields(this.parts[0].order);

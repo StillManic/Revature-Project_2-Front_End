@@ -12,7 +12,14 @@ import { WorkOrderFormComponent } from './work-order-form/work-order-form.compon
 import { AddCustomerFormComponent } from './add-customer-form/add-customer-form.component';
 import { HttpClientModule } from '@angular/common/http';
 import { WorkOrderViewComponent } from './work-order-view/work-order-view.component';
+
 import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
+
+import { LoginComponent } from './login/login.component';
+import { CookieService } from 'ngx-cookie-service';
+// import { ViewhistoryComponent } from './viewhistory/viewhistory.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +30,12 @@ import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
     WorkOrderFormComponent,
     AddCustomerFormComponent,
     WorkOrderViewComponent,
+
     AddVehicleComponent
+
+    LoginComponent,
+    // ViewhistoryComponent
+
   ],
   imports: [
     BrowserModule,
@@ -33,7 +45,7 @@ import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
     HttpClientModule
 
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
