@@ -12,6 +12,7 @@ import { WorkOrderFormComponent } from './work-order-form/work-order-form.compon
 import { AddCustomerFormComponent } from './add-customer-form/add-customer-form.component';
 import { HttpClientModule } from '@angular/common/http';
 import { WorkOrderViewComponent } from './work-order-view/work-order-view.component';
+import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +22,8 @@ import { WorkOrderViewComponent } from './work-order-view/work-order-view.compon
     CardsComponent,
     WorkOrderFormComponent,
     AddCustomerFormComponent,
-    WorkOrderViewComponent
+    WorkOrderViewComponent,
+    AddVehicleComponent
   ],
   imports: [
     BrowserModule,

@@ -54,4 +54,13 @@ export class VehicleService {
       catchError(this.handleError<Vehicle>(`getById`))
     )
   }
+
+  //create function that add a new vehicle
+  addVehicle(vehicle: Vehicle): Observable<Vehicle> {
+    console.log(vehicle);
+    return this.http.post<Vehicle>(this.url + '/add', vehicle, this.httpOptions).pipe(
+      catchError(this.handleError<Vehicle>(`createVehicle`))
+    )
+  }
+
 }

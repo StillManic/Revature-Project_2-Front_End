@@ -40,4 +40,10 @@ export class EmployeeService {
       catchError(this.handleError<Employee>(`getEmployee id= ${id}`))
     )
   }
+
+  getAllEmployees(): Observable<Employee[]> {
+    return this.http.get<Employee[]>(this.url).pipe(
+      catchError(this.handleError<Employee[]>())
+    )
+  }
 }

@@ -11,13 +11,19 @@ export class AddCustomerFormComponent implements OnInit {
 
   constructor(private customerService: CustomerService) { }
 
-  customer?: Customer;
+  customer: Customer  = {
+    firstName: '',
+    lastName: '',
+    phoneNumber: '',
+    email: ''
+  };
+  
   firstName = new FormControl('');
   lastName = new FormControl('');
   phoneNumber = new FormControl('');
   email = new FormControl('');
 
-
+  addVehicle: boolean = false;
 
   ngOnInit(): void {
   }
@@ -41,4 +47,9 @@ export class AddCustomerFormComponent implements OnInit {
     //Add the addCustomer service here
     
   }
+  //create addVehicle function that turns addVheicle to true
+  // addVehicleBool(): void {
+  //   this.addVehicle = true;
+  // }
+
 }
