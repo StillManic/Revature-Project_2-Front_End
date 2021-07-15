@@ -3,22 +3,23 @@ import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Customer } from '../interface/customer';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class CustomerService {
+  constructor(private http: HttpClient, private cookieService: CookieService) { }
 
-  constructor(private http: HttpClient) { }
   url: string = `http://localhost:8080/customers`;
 
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': this.cookieService.get('auth') })
   };
 
   getAllCustomer(): Observable<Customer[]> {
-    return this.http.get<Customer[]>(this.url).pipe(
+    return this.http.get<Customer[]>(this.url, this.httpOptions).pipe(
       catchError(this.handleError<Customer[]>(`getResident`, []))
     )
   }

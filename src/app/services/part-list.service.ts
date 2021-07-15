@@ -14,7 +14,7 @@ export class PartListService {
   url = `http://localhost:8080/partlists`
 
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({'Content-Type': 'application/json', 'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJkdW1teSIsImV4cCI6MTYyNjMzODc0MCwiaWF0IjoxNjI2MzAyNzQwfQ.-NTPprHxEAUOxVE9V93T7ydEFkcBWj-vYWdPsh0KiG0'})
   };
 
 
@@ -52,7 +52,7 @@ export class PartListService {
   }
 
   getParts(id: number): Observable<PartList[]> {
-    return this.http.get<PartList[]>(this.url + '/order/' + id).pipe(
+    return this.http.get<PartList[]>(this.url + '/order/' + id, this.httpOptions).pipe(
       catchError(this.handleError<PartList[]>(`getParts`, []))
     );
   }

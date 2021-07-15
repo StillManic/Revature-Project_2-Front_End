@@ -3,17 +3,18 @@ import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Employee } from '../interface/employee';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
+  constructor(private http: HttpClient, private cookieService: CookieService) { }
 
-  constructor(private http: HttpClient) { }
   url = `http://localhost:8080/employees`
 
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': this.cookieService.get('auth') })
   };
 
 
@@ -36,7 +37,7 @@ export class EmployeeService {
   }
 
   getEmployeeById(id: number): Observable<Employee> {
-    return this.http.get<Employee>(this.url + '/' + id).pipe(
+    return this.http.get<Employee>(this.url + '/' + id, this.httpOptions).pipe(
       catchError(this.handleError<Employee>(`getEmployee id= ${id}`))
     )
   }

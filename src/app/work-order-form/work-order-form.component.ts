@@ -8,7 +8,7 @@ import { CustomerService } from '../services/customer.service';
 import { VehicleService } from '../services/vehicle.service';
 import { PartlookupService } from '../services/partlookup.service';
 import { EmployeeService } from '../services/employee.service';
-import { WorkorderService } from '../services/workorder.service';
+import { WorkOrderService } from '../services/work-order.service';
 import { PartList } from '../interface/part-list';
 import { PartListService } from '../services/part-list.service';
 @Component({
@@ -18,7 +18,7 @@ import { PartListService } from '../services/part-list.service';
 })
 export class WorkOrderFormComponent implements OnInit {
 
-  constructor(private customerService: CustomerService, private vehicleService: VehicleService, private partLookUpService: PartlookupService, private employeeService: EmployeeService, private workOrderService: WorkorderService, private partListService: PartListService) { }
+  constructor(private customerService: CustomerService, private vehicleService: VehicleService, private partLookUpService: PartlookupService, private employeeService: EmployeeService, private workOrderService: WorkOrderService, private partListService: PartListService) { }
 
   vehicleId = new FormControl('');
   customer = new FormControl('');
