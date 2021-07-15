@@ -13,6 +13,7 @@ import { AddCustomerFormComponent } from './add-customer-form/add-customer-form.
 import { HttpClientModule } from '@angular/common/http';
 import { WorkOrderViewComponent } from './work-order-view/work-order-view.component';
 import { LoginComponent } from './login/login.component';
+import { CookieService } from 'ngx-cookie-service';
 // import { ViewhistoryComponent } from './viewhistory/viewhistory.component';
 
 @NgModule({
@@ -36,7 +37,7 @@ import { LoginComponent } from './login/login.component';
     HttpClientModule
 
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

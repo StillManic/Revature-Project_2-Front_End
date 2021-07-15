@@ -3,18 +3,18 @@ import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { PartLookUp} from '../interface/part-lookup';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PartlookupService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private cookieService: CookieService) { }
 
   url = `http://localhost:8080/parts`
 
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': this.cookieService.get('auth') })
   };
 
 
@@ -37,13 +37,13 @@ export class PartlookupService {
   }
 
   getAllParts(): Observable<PartLookUp[]> {
-    return this.http.get<PartLookUp[]>(this.url).pipe(
+    return this.http.get<PartLookUp[]>(this.url, this.httpOptions).pipe(
       catchError(this.handleError<PartLookUp[]>('getAllParts'))
     )
   }
 
   getPartById(partId: number): Observable<PartLookUp> {
-    return this.http.get<PartLookUp>(this.url + '/' + partId).pipe(
+    return this.http.get<PartLookUp>(this.url + '/' + partId, this.httpOptions).pipe(
       catchError(this.handleError<PartLookUp>('getPartById'))
     )
   }

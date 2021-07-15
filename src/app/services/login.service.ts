@@ -11,12 +11,15 @@ export class LoginService {
 
   url: string = 'http://localhost:8080/employees/log_in';
   
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+  
   constructor(private http: HttpClient) { }
 
   // POST
-  getLogin(login: Employee): Observable<Employee> {
-	
-    return this.http.post<Employee>(this.url, login);
+  getLogin(login: Employee): Observable<string> {
+    return this.http.post<string>(this.url, login, this.httpOptions);
   }
 
 
