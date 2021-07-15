@@ -25,9 +25,7 @@
                     <!-- Add in vehicle data -->
 
                     <select class="form-select" id="country" required="" [formControl]="vehicleId" name="vehicleSelect"
-                        *ngIf="customer.value"
-                        (click)="setVehicleId()"
-                        >
+                        *ngIf="customer.value" (click)="setVehicleId()">
                         <option default>Choose...</option>
                         <option *ngFor="let vehicle of vehicleArray">{{vehicle.id}}</option>
                     </select>
@@ -39,10 +37,9 @@
                 <div class="col-sm-6">
                     <label for="employeeId" class="form-label">Employee ID</label>
                     <select class="form-select" id="employeeId" placeholder="" value="" required=""
-                        [formControl]="employeeId" name="employeeId" 
-                        (click)="setEmployeeId()"
-                        >
-                        <option>1</option>
+                        [formControl]="employeeId" name="employeeId" (click)="setEmployeeId()">
+                        <option value="1">Choose</option>
+                        <option *ngFor="let employee of employees" >{{employee.id}} </option>
                     </select>
                     <div class="invalid-feedback">
                         Valid Employee ID is required.
@@ -73,8 +70,8 @@
                 <li>
                     <select class="form-select" multiple aria-label="multiple select example" name="partSelect"
                         [formControl]="partsSelect" (click)="calculateTotal()" *ngIf="parts">
-                    
-                        <option *ngFor="let part of parts" >{{part.id}} {{part.name}} {{part.price}}</option>
+
+                        <option *ngFor="let part of parts">{{part.id}} {{part.name}} {{part.price}}</option>
                     </select>
                 </li>
             </ul>

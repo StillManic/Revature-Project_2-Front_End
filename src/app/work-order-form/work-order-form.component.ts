@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { WorkOrder } from '../interface/work-order';
 import { Customer } from '../interface/customer';
 import { Vehicle } from '../interface/vehicle';
+import { Employee } from '../interface/employee';
 import { PartLookUp } from '../interface/part-lookup'
 import { CustomerService } from '../services/customer.service';
 import { VehicleService } from '../services/vehicle.service';
@@ -59,13 +60,14 @@ export class WorkOrderFormComponent implements OnInit {
   customerArray: Customer[] = [];
   vehicleArray: Vehicle[] = [];
   parts?: PartLookUp[];
-
+  employees: Employee[] = [];
   vehicle?: Vehicle;
   partList?: PartList;
 
   ngOnInit(): void {
     this.getAllCustomers();
     this.getAllParts();
+    this.getAllEmployees();
   }
 
 
@@ -73,6 +75,12 @@ export class WorkOrderFormComponent implements OnInit {
     this.customerService.getAllCustomer().subscribe(customer => {
       this.customerArray = customer;
       // console.log(this.customerArray)
+    })
+  }
+
+  getAllEmployees(): void {
+    this.employeeService.getAllEmployees().subscribe(employees => {
+      this.employees = employees;
     })
   }
 
