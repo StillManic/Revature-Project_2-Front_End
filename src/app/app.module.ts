@@ -31,9 +31,9 @@ import { CookieService } from 'ngx-cookie-service';
     AddCustomerFormComponent,
     WorkOrderViewComponent,
 
-    AddVehicleComponent
+    AddVehicleComponent,
 
-    LoginComponent,
+    LoginComponent
     // ViewhistoryComponent
 
   ],

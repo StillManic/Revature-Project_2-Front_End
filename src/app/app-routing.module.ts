@@ -17,9 +17,9 @@ const routes: Routes = [
   { path: 'addCustomer', component: AddCustomerFormComponent },
   { path: 'viewOrder/:id', component: WorkOrderViewComponent },
 
-  { path: 'addVehicle', component: AddVehicleComponent }
+  { path: 'addVehicle', component: AddVehicleComponent },
 
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent }
   // { path: 'viewhistory', component: ViewhistoryComponent }
 
   
