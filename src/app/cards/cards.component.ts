@@ -11,6 +11,8 @@ export class CardsComponent implements OnInit {
 
   constructor(private workOrderService: WorkOrderService) { }
   workOrders: WorkOrder[] = [];
+  completedWorkOrders: WorkOrder[] = [];
+
   ngOnInit(): void {
     this.getAllWorkOrders()
   }
@@ -21,6 +23,14 @@ export class CardsComponent implements OnInit {
 
         this.workOrders = workOrders
         console.log(this.workOrders)
+      }
+    )
+  }
+
+  getCompletedWorkOrders(): void {
+    this.workOrderService.getCompletedWorkOrder().subscribe(
+      completedWorkOrders => {
+        this.completedWorkOrders = completedWorkOrders
       }
     )
   }
