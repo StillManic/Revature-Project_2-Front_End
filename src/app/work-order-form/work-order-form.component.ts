@@ -73,8 +73,14 @@ export class WorkOrderFormComponent implements OnInit {
 
   getAllCustomers(): void {
     this.customerService.getAllCustomer().subscribe(customer => {
-      this.customerArray = customer;
-      // console.log(this.customerArray)
+      this.customerArray = customer.sort(
+        (a: Customer, b: Customer) => {
+          if (a.id != undefined && b.id != undefined) {
+            return a.id - b.id;
+          }
+          return 0;
+        }
+      )
     })
   }
 
