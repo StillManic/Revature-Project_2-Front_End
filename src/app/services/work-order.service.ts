@@ -45,6 +45,13 @@ export class WorkOrderService {
     );
   }
 
+  getCompletedWorkOrder(): Observable<WorkOrder[]> {
+    return this.http.get<WorkOrder[]>(this.url + '/complete', this.httpOptions).pipe(
+      catchError(this.handleError<WorkOrder[]>(`getCompletedWorkOrder`, []))
+    );
+  }
+
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
