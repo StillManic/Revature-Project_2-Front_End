@@ -23,10 +23,9 @@ const routes: Routes = [
   { path: 'addVehicle', component: AddVehicleComponent },
   { path: 'viewCustomer/:id', component: ViewCustomerComponent },
 
-  { path: '', component: LoginComponent }
+  { path: '', component: LoginComponent },
 
 
-  { path: 'login', component: LoginComponent },
   { path: 'viewhistory', component: ViewhistoryComponent },
   { path: 'vehicle/:vin', component: VinhistoryComponent }
   
