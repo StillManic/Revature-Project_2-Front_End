@@ -6,6 +6,7 @@ import { AddCustomerFormComponent } from './add-customer-form/add-customer-form.
 import { WorkOrderViewComponent } from './work-order-view/work-order-view.component';
 
 import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
+import { ViewCustomerComponent } from './view-customer/view-customer.component';
 
 import { LoginComponent } from './login/login.component';
 // import { ViewhistoryComponent } from './viewhistory/viewhistory.component';
@@ -18,7 +19,7 @@ const routes: Routes = [
   { path: 'viewOrder/:id', component: WorkOrderViewComponent },
 
   { path: 'addVehicle', component: AddVehicleComponent },
-
+  { path: 'viewCustomer/:id', component: ViewCustomerComponent },
   { path: 'login', component: LoginComponent }
   // { path: 'viewhistory', component: ViewhistoryComponent }
 

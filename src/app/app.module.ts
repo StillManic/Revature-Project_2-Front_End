@@ -17,6 +17,7 @@ import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
 
 import { LoginComponent } from './login/login.component';
 import { CookieService } from 'ngx-cookie-service';
+import { ViewCustomerComponent } from './view-customer/view-customer.component';
 // import { ViewhistoryComponent } from './viewhistory/viewhistory.component';
 
 
@@ -30,7 +31,7 @@ import { CookieService } from 'ngx-cookie-service';
     WorkOrderFormComponent,
     AddCustomerFormComponent,
     WorkOrderViewComponent,
-
+    ViewCustomerComponent,
     AddVehicleComponent,
 
     LoginComponent

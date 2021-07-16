@@ -4,7 +4,7 @@
         <input type="button" class="w-25 btn btn-primary" value="Back" routerLink="/dashboard">
         <input type="button" class="w-25 btn btn-primary" value="Edit" routerLink="/dashboard">
         <div class="row g-3">
-            <div class="col-sm-6">
+            <div class="col-sm-6" *ngIf="customer" routerLink="/viewCustomer/{{customer.id}}">
                 <label for="customer" class="form-label h3">Customer</label>
                 <p id="customer">{{ customer_name }}</p>
             </div>
