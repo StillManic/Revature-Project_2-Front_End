@@ -8,8 +8,10 @@ import { WorkOrderViewComponent } from './work-order-view/work-order-view.compon
 import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
 import { ViewCustomerComponent } from './view-customer/view-customer.component';
 
+
 import { LoginComponent } from './login/login.component';
-// import { ViewhistoryComponent } from './viewhistory/viewhistory.component';
+import { ViewhistoryComponent } from './viewhistory/viewhistory.component';
+import { VinhistoryComponent } from './vinhistory/vinhistory.component';
 
 
 const routes: Routes = [
@@ -20,9 +22,13 @@ const routes: Routes = [
 
   { path: 'addVehicle', component: AddVehicleComponent },
   { path: 'viewCustomer/:id', component: ViewCustomerComponent },
-  { path: '', component: LoginComponent }
-  // { path: 'viewhistory', component: ViewhistoryComponent }
 
+  { path: '', component: LoginComponent }
+
+
+  { path: 'login', component: LoginComponent },
+  { path: 'viewhistory', component: ViewhistoryComponent },
+  { path: 'vehicle/:vin', component: VinhistoryComponent }
   
 ];
 

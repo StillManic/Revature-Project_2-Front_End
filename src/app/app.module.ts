@@ -12,14 +12,15 @@ import { WorkOrderFormComponent } from './work-order-form/work-order-form.compon
 import { AddCustomerFormComponent } from './add-customer-form/add-customer-form.component';
 import { HttpClientModule } from '@angular/common/http';
 import { WorkOrderViewComponent } from './work-order-view/work-order-view.component';
-
-import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
-
 import { LoginComponent } from './login/login.component';
 import { CookieService } from 'ngx-cookie-service';
 import { ViewCustomerComponent } from './view-customer/view-customer.component';
-// import { ViewhistoryComponent } from './viewhistory/viewhistory.component';
-
+import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
+import { ViewhistoryComponent } from './viewhistory/viewhistory.component';
+import { CustomersearchComponent } from './customersearch/customersearch.component';
+import { VinsearchComponent } from './vinsearch/vinsearch.component';
+import { VinhistoryComponent } from './vinhistory/vinhistory.component';
+import { CustomerhistoryComponent } from './customerhistory/customerhistory.component';
 
 @NgModule({
   declarations: [
@@ -33,9 +34,12 @@ import { ViewCustomerComponent } from './view-customer/view-customer.component';
     WorkOrderViewComponent,
     ViewCustomerComponent,
     AddVehicleComponent,
-
-    LoginComponent
-    // ViewhistoryComponent
+    LoginComponent,
+    ViewhistoryComponent,
+    CustomersearchComponent,
+    VinsearchComponent,
+    VinhistoryComponent,
+    CustomerhistoryComponent
 
   ],
   imports: [

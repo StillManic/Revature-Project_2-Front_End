@@ -44,6 +44,12 @@ export class WorkOrderService {
       catchError(this.handleError<WorkOrder[]>(`getWorkOrderByCustomerId`, []))
     );
   }
+  
+  getWorkOrderByVin(vin: number): Observable<WorkOrder[]> {
+    return this.http.get<WorkOrder[]>(this.url + '/vehicle/vin/' + vin, this.httpOptions).pipe(
+      catchError(this.handleError<WorkOrder[]>(`getWorkOrder`, ))
+    );
+  }
 
   getCompletedWorkOrder(): Observable<WorkOrder[]> {
     return this.http.get<WorkOrder[]>(this.url + '/complete', this.httpOptions).pipe(

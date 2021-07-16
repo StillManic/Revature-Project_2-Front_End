@@ -31,7 +31,7 @@ export class WorkOrderFormComponent implements OnInit {
   total: number = 0;
   //question mark means undefined at start
   workOrder: WorkOrder = {
-    id: '',
+    id: -1,
     vehicleId: {
       customerId: {
         firstName: '',
