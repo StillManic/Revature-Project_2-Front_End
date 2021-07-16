@@ -27,7 +27,7 @@ export class CustomerService {
 
   //create function  to get customer by id
   getCustomerById(id: number): Observable<Customer> {
-    return this.http.get<Customer>(`${this.url}/${id}`).pipe(
+    return this.http.get<Customer>(`${this.url}/${id}`, this.httpOptions).pipe(
       catchError(this.handleError<Customer>('getResident'))
     )
   }

@@ -39,6 +39,12 @@ export class WorkOrderService {
     )
   }
 
+  getWorkOrderByCustomerId(customerId: number): Observable<WorkOrder[]> {
+    return this.http.get<WorkOrder[]>(this.url + '/vehicle/customer/' + customerId, this.httpOptions).pipe(
+      catchError(this.handleError<WorkOrder[]>(`getWorkOrderByCustomerId`, []))
+    );
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
