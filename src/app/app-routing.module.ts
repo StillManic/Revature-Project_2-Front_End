@@ -20,7 +20,7 @@ const routes: Routes = [
 
   { path: 'addVehicle', component: AddVehicleComponent },
   { path: 'viewCustomer/:id', component: ViewCustomerComponent },
-  { path: 'login', component: LoginComponent }
+  { path: '', component: LoginComponent }
   // { path: 'viewhistory', component: ViewhistoryComponent }
 
   

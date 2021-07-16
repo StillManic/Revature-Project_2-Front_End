@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
 		// console.log(`Saving token: ${token}`);
 		this.cookieService.set('auth', token);
 		// console.log(`Getting token: ${this.cookieService.get('auth')}`);
-		this.router.navigate(['dashboard']);
+		this.router.navigate(['/dashboard']);
 	});
   }
 }
