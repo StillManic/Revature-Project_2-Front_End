@@ -2,7 +2,7 @@ import { Vehicle } from './vehicle';
 import { Employee } from './employee';
 
 export interface WorkOrder {
-    id?: string;
+    id?: number;
     vehicleId: Vehicle;
     employeeId: Employee;
     description: string;
