@@ -50,6 +50,12 @@ export class WorkOrderService {
       catchError(this.handleError<WorkOrder[]>(`getWorkOrder`, ))
     );
   }
+  
+  getWorkOrderByPhone(phone: number): Observable<WorkOrder[]> {
+    return this.http.get<WorkOrder[]>(this.url + '/vehicle/customer/phone/' + phone, this.httpOptions).pipe(
+      catchError(this.handleError<WorkOrder[]>(`getWorkOrder`, ))
+    );
+  }
 
   getCompletedWorkOrder(): Observable<WorkOrder[]> {
     return this.http.get<WorkOrder[]>(this.url + '/complete', this.httpOptions).pipe(

@@ -1,10 +1,29 @@
-<h2>Work Orders</h2>
+<h2>Work Orders for Vehicle</h2>
+<div class="workorders">
+    <h4>Vehicle Work Orders</h4>
+    <button (click)="goBack()">go back</button>
+    <table class="wo-list ">
+        <thead>
+            <tr>
+                <!-- Insert Headers here  -->
+                <th scope="col">ID</th>
+                <th scope="col">Customer Name</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">Vehicle ID</th>
+                <th scope="col">Total Cost</th>
+            </tr>
+        </thead>
 
-<!-- <ul class="workorders"> -->
-<!--   <li *ngFor="let workorder of workorders"> -->
-<!-- <!--     <a routerLink="/viewOrder/{{workorder.id}}"> --> -->
-<!-- <!--       <span class="badge">{{workorder.id}}</span>  --> -->
-<!-- <!--       {{workorder.vehicleId}} {{workorder.employeeId}} {{workorder.date}} {{workorder.cost}} {{workorder.complete}} --> -->
-<!-- <!--     </a> --> -->
-<!--   </li> -->
-<!-- </ul> -->
+        
+        <tbody>
+            <!-- insert data into here when you get it -->
+            <tr *ngFor="let workorder of workorders" routerLink="/viewOrder/{{workorder.id}}">
+                <td>{{workorder.id}}</td>
+                <td>{{workorder.vehicleId.customerId.firstName}} {{workorder.vehicleId.customerId.lastName}}</td>
+                <td>{{workorder.date}}</td>
+                <td>{{workorder.vehicleId.id}}</td>
+                <td>{{workorder.cost}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

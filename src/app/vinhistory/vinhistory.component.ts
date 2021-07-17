@@ -25,6 +25,7 @@ export class VinhistoryComponent implements OnInit {
 
   getWorkOrders(): void {
     const vin = parseInt(this.route.snapshot.paramMap.get('vin')!, 10);
+    console.log(vin);
     this.workorderService.getWorkOrderByVin(vin)
       .subscribe(workorders => this.workorders = workorders);
   }
