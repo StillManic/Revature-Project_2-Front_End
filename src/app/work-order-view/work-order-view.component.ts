@@ -7,6 +7,7 @@ import { Vehicle } from '../interface/vehicle';
 import { WorkOrder } from '../interface/work-order';
 import { PartListService } from '../services/part-list.service';
 import { WorkOrderService } from '../services/work-order.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-work-order-view',
@@ -15,9 +16,14 @@ import { WorkOrderService } from '../services/work-order.service';
 })
 export class WorkOrderViewComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private workOrderService: WorkOrderService, private partListService: PartListService) { }
+  constructor(
+	private route: ActivatedRoute,
+	private workOrderService: WorkOrderService,
+	private partListService: PartListService,
+	private location: Location
+	) { }
 
-  workOrder?: WorkOrder;
+  workOrder!: WorkOrder;
   customer?: Customer;
   customer_name?: string;
   vehicle?: Vehicle;
@@ -29,6 +35,7 @@ export class WorkOrderViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.getParts();
+    
   }
 
   getParts(): void {
@@ -52,6 +59,12 @@ export class WorkOrderViewComponent implements OnInit {
 
   setFields(order: WorkOrder): void {
     this.workOrder = order;
+    if ( this.workOrder.complete) {
+        (<HTMLInputElement>document.getElementById("edit")).disabled = true;
+    }
+    else {
+		(<HTMLInputElement>document.getElementById("edit")).disabled = false;
+	}
     this.customer = this.workOrder.vehicleId.customerId;
     this.customer_name = this.customer.firstName + ' ' + this.customer.lastName;
     this.vehicle = this.workOrder.vehicleId;
@@ -60,4 +73,8 @@ export class WorkOrderViewComponent implements OnInit {
     this.cost = this.workOrder.cost;
     this.description = this.workOrder.description;
   }
+  
+  goBack(): void {
+		this.location.back();
+	}
 }

@@ -52,10 +52,7 @@ export class PartListService {
   }
 
   getParts(id: number): Observable<PartList[]> {
-
-
     return this.http.get<PartList[]>(this.url + '/order/' + id, this.httpOptions).pipe(
-
       catchError(this.handleError<PartList[]>(`getParts`, []))
     );
   }
