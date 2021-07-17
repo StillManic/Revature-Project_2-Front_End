@@ -21,6 +21,7 @@ import { CustomersearchComponent } from './customersearch/customersearch.compone
 import { VinsearchComponent } from './vinsearch/vinsearch.component';
 import { VinhistoryComponent } from './vinhistory/vinhistory.component';
 import { CustomerhistoryComponent } from './customerhistory/customerhistory.component';
+import { WorkOrderUpdateComponent } from './work-order-update/work-order-update.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { CustomerhistoryComponent } from './customerhistory/customerhistory.comp
     CustomersearchComponent,
     VinsearchComponent,
     VinhistoryComponent,
-    CustomerhistoryComponent
+    CustomerhistoryComponent,
+    WorkOrderUpdateComponent
 
   ],
   imports: [

@@ -12,6 +12,8 @@ import { ViewCustomerComponent } from './view-customer/view-customer.component';
 import { LoginComponent } from './login/login.component';
 import { ViewhistoryComponent } from './viewhistory/viewhistory.component';
 import { VinhistoryComponent } from './vinhistory/vinhistory.component';
+import { CustomerhistoryComponent } from './customerhistory/customerhistory.component';
+import { WorkOrderUpdateComponent } from './work-order-update/work-order-update.component';
 
 
 const routes: Routes = [
@@ -27,7 +29,9 @@ const routes: Routes = [
 
 
   { path: 'viewhistory', component: ViewhistoryComponent },
-  { path: 'vehicle/:vin', component: VinhistoryComponent }
+  { path: 'vin/:vin', component: VinhistoryComponent },
+  { path: 'phone/:phone', component: CustomerhistoryComponent },
+  { path: 'updateOrder/:id', component: WorkOrderUpdateComponent }
   
 ];
 

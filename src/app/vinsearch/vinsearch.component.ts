@@ -19,26 +19,30 @@ export class VinsearchComponent implements OnInit {
 
 	// Push a search term into the observable stream.
 	search(term: string): void {
-    this.searchTerms.next(term);
+		this.searchTerms.next(term);
 	}
 
 	ngOnInit(): void {
-		this.vehicles = this.vehicleService.getAllVehicle();
-		this.vins = this.searchTerms.pipe(
-			// wait 300ms after each keystroke before considering the term
+		this.vins = this.vehicleService.getAllVehicle();
+    	this.vehicles = this.searchTerms.pipe(
+      		// wait 300ms after each keystroke before considering the term
       		debounceTime(300),
 
-      		// ignore new term if same as previous term
-      		distinctUntilChanged(),
+			// ignore new term if same as previous term
+			distinctUntilChanged(),
 
-      		// switch to new search observable each time the term changes
-      		switchMap((term: string) => this.searchVehicles(term, this.vehicles)),
-    	);
+			// switch to new search observable each time the term changes
+			switchMap((term: string) => this.searchVehicles(term, this.vins)),
+		);
 	}
   
-	searchVehicles(term: string, vins: Observable<Vehicle[]>): Observable<Vehicle[]> {
+	searchVehicles(term: string, vehicles: Observable<Vehicle[]>): Observable<Vehicle[]> {
+		if (!term.trim()) {
+      		// if not search term, return empty hero array.
+      		return of([]);
+      	}
 		let vinarray: Vehicle[] = [];
-		vins.subscribe(vehicles => {
+		vehicles.subscribe(vehicles => {
 			for (let v of vehicles) {
 				if (v.vin.toString().includes(`${term}`)){
 					vinarray.push(v);
@@ -47,6 +51,4 @@ export class VinsearchComponent implements OnInit {
 		return of(vinarray);
 	}
 }
-
-
 
