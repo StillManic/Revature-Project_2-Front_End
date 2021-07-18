@@ -130,10 +130,10 @@ export class WorkOrderUpdateComponent implements OnInit {
 					if (this.workOrder) {
 						this.pl.order = this.workOrder;
 						this.pl.part = element;
+						this.partListService.addPartList(this.pl).subscribe();	
 					}
 				});
-				this.newparts = [];
-    			this.partListService.addPartList(this.pl).subscribe();	
+				window.location.reload();
 			};
 			this.workOrder.description = (<HTMLInputElement>document.getElementById("description")).value;
 			this.workOrderService.updateWorkOrder(this.workOrder).subscribe(workorder => {
@@ -153,7 +153,7 @@ export class WorkOrderUpdateComponent implements OnInit {
 			this.workOrderService.updateWorkOrder(this.workOrder).subscribe(workorder => {
 				this.workOrder = workorder;
 				});
-			setTimeout(() => {this.location.back(); }, 1000);
+			setTimeout(() => {this.location.back(); }, 500);
 		}
 	}
 }
