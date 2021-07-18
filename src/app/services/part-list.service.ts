@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { PartList } from '../interface/part-list';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @Injectable({
@@ -10,12 +11,12 @@ import { PartList } from '../interface/part-list';
 })
 export class PartListService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private cookieService: CookieService) { }
   url = `http://localhost:8080/partlists`
 
   httpOptions = {
-    headers: new HttpHeaders({'Content-Type': 'application/json', 'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJkdW1teSIsImV4cCI6MTYyNjMzODc0MCwiaWF0IjoxNjI2MzAyNzQwfQ.-NTPprHxEAUOxVE9V93T7ydEFkcBWj-vYWdPsh0KiG0'})
-  };
+     headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': this.cookieService.get('auth') })
+     };
 
 
   /**
