@@ -13,6 +13,7 @@ export class TableComponent implements OnInit {
   constructor(private workOrderService: WorkOrderService, private route: ActivatedRoute) { }
 
 
+  allworkOrders: WorkOrder[] = [];
   workOrders: WorkOrder[] = [];
 
   id: any;
@@ -28,8 +29,13 @@ export class TableComponent implements OnInit {
     this.workOrderService.getAllWorkOrders().subscribe(
       workOrders => {
         let ran = workOrders[0].vehicleId.customerId.firstName;
-        console.log(ran)
-        this.workOrders = workOrders
+        console.log(ran)       
+        this.allworkOrders = workOrders
+        this.allworkOrders.forEach( (element) => {
+					if (element.complete == false) {
+						 this.workOrders.push(element)
+					}
+				});
         this.workOrders.sort((a: WorkOrder, b: WorkOrder) => {
           let left = a.id ? a.id : -1;
           let right = b.id ? b.id : -1;

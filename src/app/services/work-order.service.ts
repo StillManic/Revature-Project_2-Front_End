@@ -31,6 +31,12 @@ export class WorkOrderService {
       catchError(this.handleError<WorkOrder>(`getWorkOrder`, ))
     );
   }
+  
+  updateWorkOrder(workorder: WorkOrder): Observable<WorkOrder> {
+    return this.http.put<WorkOrder>(this.url + '/update', workorder, this.httpOptions).pipe(
+      catchError(this.handleError<WorkOrder>(`updateWorkOrder`))
+    );
+  }
 
   addWorkOrder(workorder: WorkOrder): Observable<WorkOrder> {
     console.log(workorder)

@@ -1,8 +1,8 @@
 <div class="row justify-content-center">
     <div class="col-6 text-center">
         <h4 class="mb-3">Work Order</h4>
-        <input type="button" class="w-25 btn btn-primary" value="Back" routerLink="/dashboard">
-        <input type="button" class="w-25 btn btn-primary" value="Edit" routerLink="/dashboard">
+        <input type="button" class="w-25 btn btn-primary" value="Back" (click)="goBack()">
+        <input type="button" id="edit" class="w-25 btn btn-primary" value="Edit" routerLink="/updateOrder/{{workOrder.id}}">
         <div class="row g-3">
             <div class="col-sm-6" *ngIf="customer" routerLink="/viewCustomer/{{customer.id}}">
                 <label for="customer" class="form-label h3">Customer</label>
