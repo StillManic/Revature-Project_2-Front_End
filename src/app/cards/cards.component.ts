@@ -23,6 +23,7 @@ export class CardsComponent implements OnInit {
     this.getAllWorkOrders()
     this.getAllCustomer()
     this.getAllVehicle()
+    this.getCompletedWorkOrders();
   }
 
   getAllWorkOrders(): void {
@@ -39,9 +40,11 @@ export class CardsComponent implements OnInit {
     this.workOrderService.getCompletedWorkOrder().subscribe(
       completedWorkOrders => {
         this.completedWorkOrders = completedWorkOrders
+        console.log(this.completedWorkOrders)
       }
     )
   }
+
   getAllCustomer(): void {
     this.customerService.getAllCustomer().subscribe(
       customers => {
@@ -50,6 +53,7 @@ export class CardsComponent implements OnInit {
       }
     )
   }
+
   getAllVehicle(): void {
     this.vehicleService.getAllVehicle().subscribe(
       vehicles => {

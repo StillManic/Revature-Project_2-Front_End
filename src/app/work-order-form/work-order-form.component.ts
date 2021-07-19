@@ -12,6 +12,8 @@ import { EmployeeService } from '../services/employee.service';
 import { WorkOrderService } from '../services/work-order.service';
 import { PartList } from '../interface/part-list';
 import { PartListService } from '../services/part-list.service';
+import { ActivatedRoute, Router } from '@angular/router';
+
 @Component({
   selector: 'app-work-order-form',
   templateUrl: './work-order-form.component.html',
@@ -19,7 +21,7 @@ import { PartListService } from '../services/part-list.service';
 })
 export class WorkOrderFormComponent implements OnInit {
 
-  constructor(private customerService: CustomerService, private vehicleService: VehicleService, private partLookUpService: PartlookupService, private employeeService: EmployeeService, private workOrderService: WorkOrderService, private partListService: PartListService) { }
+  constructor(private customerService: CustomerService, private vehicleService: VehicleService, private partLookUpService: PartlookupService, private employeeService: EmployeeService, private workOrderService: WorkOrderService, private partListService: PartListService, private router: Router) { }
 
   vehicleId = new FormControl('');
   customer = new FormControl('');
@@ -183,6 +185,10 @@ export class WorkOrderFormComponent implements OnInit {
     });
 
 
+    setTimeout(() => {
+      this.router.navigate(['/dashboard']);
+    }
+    , 1000);
 
   }
 }

@@ -14,6 +14,9 @@ import { ViewhistoryComponent } from './viewhistory/viewhistory.component';
 import { VinhistoryComponent } from './vinhistory/vinhistory.component';
 import { CustomerhistoryComponent } from './customerhistory/customerhistory.component';
 import { WorkOrderUpdateComponent } from './work-order-update/work-order-update.component';
+import { CustomerTableComponent } from './customer-table/customer-table.component';
+import { ViewVehiclesComponent } from './view-vehicles/view-vehicles.component';
+import { ViewCompletedWorkorderComponent } from './view-completed-workorder/view-completed-workorder.component';
 
 
 const routes: Routes = [
@@ -31,7 +34,10 @@ const routes: Routes = [
   { path: 'viewhistory', component: ViewhistoryComponent },
   { path: 'vin/:vin', component: VinhistoryComponent },
   { path: 'phone/:phone', component: CustomerhistoryComponent },
-  { path: 'updateOrder/:id', component: WorkOrderUpdateComponent }
+  { path: 'updateOrder/:id', component: WorkOrderUpdateComponent },
+  { path: 'customerTable', component: CustomerTableComponent },
+  { path: 'viewVehicle', component: ViewVehiclesComponent },
+  { path: 'viewCompleteWorkOrder', component: ViewCompletedWorkorderComponent }
   
 ];
 
@@ -39,4 +45,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }
