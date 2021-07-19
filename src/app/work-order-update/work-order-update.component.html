@@ -1,10 +1,12 @@
 <div class="row justify-content-center">
     <div class="col-6 text-center">
         <h4 class="mb-3">Work Order</h4>
-        <button (click)="goBack()">go back</button>
-        <button (click)="save()">Save</button>
-        <button (click)="reset()">Reset Changes</button>
-        <button (click)="complete()">Complete WorkOrder</button>
+        <div class="row">
+            <button (click)="goBack()" class="col-sm-3 btn btn-primary">Back</button>
+            <button (click)="save()" class="col-sm-3 btn btn-primary">Save</button>
+            <button (click)="reset()" class="col-sm-3 btn btn-primary">Reset Changes</button>
+            <button (click)="complete()" class="col-sm-3 btn btn-primary">Complete Work Order</button>
+        </div>
         <div class="row g-3">
             <div class="col-sm-6" *ngIf="customer" routerLink="/viewCustomer/{{customer.id}}">
                 <label for="customer" class="form-label h3">Customer</label>
@@ -45,7 +47,7 @@
                         <th scope="col">ID</th>
                         <th scope="col">Name</th>
                         <th scope="col">Price</th>
-                        <th scope="col">Time</th>
+                        <th scope="col">Minutes</th>
                     </tr>
                 </thead>
                 
@@ -55,7 +57,7 @@
                         <td>{{part.part.id}}</td>
                         <td>{{part.part.name}}</td>
                         <td>{{part.part.price}}</td>
-                        <td>{{part.part.time}}</td>
+                        <td>{{part.part.time * 60}}</td>
                     </tr>
                 </tbody>
 			</table>
@@ -81,9 +83,10 @@
                 <label for="search-box">Part Search</label>
                 <input #searchBox id="search-box" (input)="search(searchBox.value)" />
             
-                <ul class="search-result">
+                <ul class="search-result" style="list-style: none;">
+                    <!-- Figure out how to get rid of the dot that is displayed to the left of the buttons (it has to do with the <li> tag) -->
                     <li *ngFor="let part of searchedparts | async" >
-                        <button (click)="addpart(part)">{{part.name}}</button>
+                        <button (click)="addpart(part)" class="btn btn-primary">{{part.name}}</button>
                     </li>
                 </ul>
             </div>

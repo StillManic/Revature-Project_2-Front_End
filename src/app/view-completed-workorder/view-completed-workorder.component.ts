@@ -20,7 +20,12 @@ export class ViewCompletedWorkorderComponent implements OnInit {
 
   getCompltedWorkOrders(): void {
     this.workOrderService.getCompletedWorkOrder().subscribe(
-      workOrders => this.workOrders = workOrders,
+      workOrders => this.workOrders = workOrders.sort((a, b) => {
+        if (a.id != undefined && b.id != undefined) {
+          return a.id - b.id;
+        }
+        return 0;
+      }),
       error => console.log(error)
     );
   }
