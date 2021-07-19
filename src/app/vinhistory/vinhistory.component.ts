@@ -27,16 +27,19 @@ export class VinhistoryComponent implements OnInit {
   getWorkOrders(): void {
     const vin = parseInt(this.route.snapshot.paramMap.get('vin')!, 10);
     console.log(vin);
-    this.workorderService.getWorkOrderByVin(vin)
-      .subscribe(workorders => this.workorders = workorders);
-      console.log(this.workorders)
-    for (let wo of this.workorders) {
-		if (wo.complete) {
-			this.woarray.push(wo);
-		}
-	}
-	console.log(this.woarray)
+    this.workorderService.getWorkOrderByVin(vin).subscribe(workorders => {
+      workorders.sort((a, b) => {
+        if (a.id != undefined && b.id != undefined) {
+          return a.id - b.id;
+        }
+        return 0;
+      });
+      for (let order of workorders) {
+        if (order.complete) this.workorders.push(order);
+      }
+    })
   }
+
 
   goBack(): void {
     this.location.back();
