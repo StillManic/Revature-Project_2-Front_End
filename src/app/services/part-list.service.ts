@@ -12,7 +12,9 @@ import { CookieService } from 'ngx-cookie-service';
 export class PartListService {
 
   constructor(private http: HttpClient, private cookieService: CookieService) { }
-  url = `http://localhost:8080/partlists`
+  
+  // url = `http://localhost:8080/partlists`
+  url: string = `http://ec2-54-193-239-17.us-west-1.compute.amazonaws.com:8080/Project_2/partlists`;
 
   httpOptions = {
      headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': this.cookieService.get('auth') })
