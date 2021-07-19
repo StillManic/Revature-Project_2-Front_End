@@ -26,7 +26,6 @@ export class CustomerhistoryComponent implements OnInit {
 
   getWorkOrders(): void {
     const phone = parseInt(this.route.snapshot.paramMap.get('phone')!, 10);
-    console.log(phone);
     this.workorderService.getWorkOrderByPhone(phone)
       .subscribe(workorders => this.workorders = workorders);
 	for (let wo of this.workorders) {

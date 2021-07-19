@@ -51,11 +51,11 @@
                 
                 <tbody>
                     <!-- insert data into here when you get it -->
-                    <tr *ngFor="let part of parts">
-                        <td>{{part.part.id}}</td>
-                        <td>{{part.part.name}}</td>
-                        <td>{{part.part.price}}</td>
-                        <td>{{part.part.time}}</td>
+                    <tr *ngFor="let oldpart of oldparts"(click)="deleteoldpart(oldpart)">
+                        <td>{{oldpart.part.id}}</td>
+                        <td>{{oldpart.part.name}}</td>
+                        <td>{{oldpart.part.price}}</td>
+                        <td>{{oldpart.part.time}}</td>
                     </tr>
                 </tbody>
 			</table>
@@ -68,7 +68,7 @@
             <table class="add-parts">
                 <tbody>
                     <!-- insert data into here when you get it -->
-                    <tr *ngFor="let newpart of newparts" (click)="deletepart(newpart)">
+                    <tr *ngFor="let newpart of newparts" (click)="deletenewpart(newpart)">
                         <td>{{newpart.id}}</td>
                         <td>{{newpart.name}}</td>
                         <td>{{newpart.price}}</td>

@@ -36,11 +36,13 @@ export class WorkOrderUpdateComponent implements OnInit {
 	start_date?: string;
 	cost?: number;
 	description?: string;
-	parts?: PartList[];
+	oldparts!: PartList[];
 	newparts: PartLookUp[] = [];
+	deleteparts: PartList[] = [];
 	searchedparts!: Observable<PartLookUp[]>;
 	allparts!: Observable<PartLookUp[]>;
 	pl: PartList = {part: this.partLookUp, order: this.workOrder};
+	newcost: number = 0.0;
 
 	private searchTerms = new Subject<string>();
 	
@@ -51,7 +53,6 @@ export class WorkOrderUpdateComponent implements OnInit {
 	ngOnInit(): void {
 	    this.getParts();
 	    this.allparts = this.partlookupService.getAllParts();
-	    console.log(this.allparts);
 	    this.searchedparts = this.searchTerms.pipe(
       		// wait 300ms after each keystroke before considering the term
       		debounceTime(300),
@@ -67,13 +68,11 @@ export class WorkOrderUpdateComponent implements OnInit {
 	getParts(): void {
 	    const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
 	    this.partListService.getParts(id).subscribe(parts => {
-		console.log(parts);
-			this.parts = parts;
+			this.oldparts = parts;
 			if (parts.length == 0) {
-				console.log("parts array empty");
 				this.getWorkOrder(id);
 			} else {
-				this.setFields(this.parts[0].order);
+				this.setFields(this.oldparts[0].order);
 			}
 		});
 	}
@@ -114,9 +113,15 @@ export class WorkOrderUpdateComponent implements OnInit {
 		this.newparts.push(part);
 	}
 	
-	deletepart(part: PartLookUp): void {
+	deletenewpart(part: PartLookUp): void {
 		let i = this.newparts.indexOf(part);
 		this.newparts.splice(i, 1);
+	}
+	
+	deleteoldpart(part: PartList): void {
+		let i = this.oldparts.indexOf(part);
+		this.deleteparts.push(part);
+		this.oldparts.splice(i, 1);
 	}
   
 	goBack(): void {
@@ -125,22 +130,39 @@ export class WorkOrderUpdateComponent implements OnInit {
 	
 	save(): void {
 		if (this.workOrder) {
+			this.newcost = 0.0;
+			if (this.oldparts.length != 0) {
+				this.oldparts.forEach( (element) => {
+					this.newcost += element.part.price;
+				});
+			};
+			console.log(this.newcost)
+			
 			if (this.newparts.length != 0) {
 				this.newparts.forEach( (element) => {
+					this.newcost += element.price;
 					if (this.workOrder) {
 						this.pl.order = this.workOrder;
 						this.pl.part = element;
 						this.partListService.addPartList(this.pl).subscribe();	
 					}
 				});
-				window.location.reload();
 			};
+			this.cost = this.newcost;
+			
+			if (this.deleteparts.length != 0) {
+				this.deleteparts.forEach( (element) => {
+					this.partListService.deletePartList(element).subscribe();
+					})
+			};
+			this.workOrder.cost = this.cost;
 			this.workOrder.description = (<HTMLInputElement>document.getElementById("description")).value;
 			this.workOrderService.updateWorkOrder(this.workOrder).subscribe(workorder => {
 				this.workOrder = workorder;
 				});
+				
+			window.location.reload();
 		}
-		console.log(this.workOrder);
 	}
 	
 	reset(): void {

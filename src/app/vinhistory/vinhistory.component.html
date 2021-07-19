@@ -17,11 +17,11 @@
         
         <tbody>
             <!-- insert data into here when you get it -->
-            <tr *ngFor="let workorder of workorders" routerLink="/viewOrder/{{workorder.id}}">
+            <tr *ngFor="let workorder of woarray" routerLink="/viewOrder/{{workorder.id}}">
                 <td>{{workorder.id}}</td>
                 <td>{{workorder.vehicleId.customerId.firstName}} {{workorder.vehicleId.customerId.lastName}}</td>
                 <td>{{workorder.date}}</td>
-                <td>{{workorder.vehicleId.id}}</td>
+                <td>{{workorder.vehicleId.vin}}</td>
                 <td>{{workorder.cost}}</td>
             </tr>
         </tbody>
