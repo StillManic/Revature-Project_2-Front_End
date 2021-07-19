@@ -3,8 +3,6 @@ import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { PartLookUp } from '../interface/part-lookup';
-import { PartList } from '../interface/part-list';
 import { WorkOrder } from '../interface/work-order';
 import { CookieService } from 'ngx-cookie-service';
 
