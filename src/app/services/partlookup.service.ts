@@ -11,7 +11,8 @@ import { CookieService } from 'ngx-cookie-service';
 export class PartlookupService {
   constructor(private http: HttpClient, private cookieService: CookieService) { }
 
-  url = `http://localhost:8080/parts`
+  // url = `http://localhost:8080/parts`
+  url: string = `http://ec2-54-193-239-17.us-west-1.compute.amazonaws.com:8080/Project_2/parts`;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': this.cookieService.get('auth') })
