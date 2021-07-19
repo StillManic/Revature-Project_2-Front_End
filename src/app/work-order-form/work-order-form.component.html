@@ -30,7 +30,7 @@
                     <select class="form-select" id="country" required="" [formControl]="vehicleId" name="vehicleSelect"
                         *ngIf="customer.value" (click)="setVehicleId()">
                         <option default>Choose...</option>
-                        <option *ngFor="let vehicle of vehicleArray">{{vehicle.id}}</option>
+                        <option *ngFor="let vehicle of vehicleArray">ID: {{vehicle.id}} VIN: {{vehicle.vin}}</option>
                     </select>
                     <div class="invalid-feedback">
                         Valid ID is required.
@@ -42,7 +42,7 @@
                     <select class="form-select" id="employeeId" placeholder="" value="" required=""
                         [formControl]="employeeId" name="employeeId" (click)="setEmployeeId()">
                         <option value="1">Choose</option>
-                        <option *ngFor="let employee of employees" >{{employee.id}} </option>
+                        <option *ngFor="let employee of employees" >{{employee.id}} {{employee.username}} </option>
                     </select>
                     <div class="invalid-feedback">
                         Valid Employee ID is required.
