@@ -48,7 +48,7 @@ export class PartListService {
   //add partList
   addPartList(partList: PartList): Observable<PartList> {
     return this.http.post<PartList>(this.url + '/add', partList, this.httpOptions).pipe(
-      map((response: PartList) => response),
+      map((response: PartList) => response)
     )
   }
 
@@ -57,4 +57,8 @@ export class PartListService {
       catchError(this.handleError<PartList[]>(`getParts`, []))
     );
   }
+  
+  deletePartList(partlist: PartList): Observable<PartList> {
+    return this.http.delete<PartList>(this.url + '/delete/' + partlist.id, this.httpOptions);
+    }
 }

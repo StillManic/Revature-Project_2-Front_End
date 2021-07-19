@@ -12,6 +12,7 @@ import { WorkOrder } from '../interface/work-order';
 })
 export class VinhistoryComponent implements OnInit {
   workorders: WorkOrder[] = [];
+  woarray: WorkOrder[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -28,6 +29,13 @@ export class VinhistoryComponent implements OnInit {
     console.log(vin);
     this.workorderService.getWorkOrderByVin(vin)
       .subscribe(workorders => this.workorders = workorders);
+      console.log(this.workorders)
+    for (let wo of this.workorders) {
+		if (wo.complete) {
+			this.woarray.push(wo);
+		}
+	}
+	console.log(this.woarray)
   }
 
   goBack(): void {

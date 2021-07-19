@@ -129,7 +129,9 @@ export class WorkOrderFormComponent implements OnInit {
   setEmployeeId(): void {
     if (this.employeeId.value) {
       console.log(this.employeeId.value)
-      this.employeeService.getEmployeeById(this.employeeId.value).subscribe(employee => {
+      let splitArry = this.employeeId.value.split(' ');
+      console.log()
+      this.employeeService.getEmployeeById(splitArry[0]).subscribe(employee => {
         this.workOrder.employeeId = employee
       })
     }
@@ -139,7 +141,13 @@ export class WorkOrderFormComponent implements OnInit {
 
   setVehicleId(): void {
     if (this.vehicleId.value) {
-      this.vehicleService.getVehicleById(this.vehicleId.value).subscribe(
+      //function to split the string by the space
+      
+      let splitArry = this.vehicleId.value.split(' ')
+
+      console.log(splitArry)
+
+      this.vehicleService.getVehicleById(splitArry[1]).subscribe(
         vehicles => {
           // this.vehicle = vehicles;
           this.workOrder.vehicleId = vehicles

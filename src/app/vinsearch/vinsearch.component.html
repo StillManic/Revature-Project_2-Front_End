@@ -1,6 +1,6 @@
-<div id="search-component">
-	<label for="search-box">Vin Search</label>
-	<input #searchBox id="search-box" (input)="search(searchBox.value)" />
+<div id="vin-search-component">
+	<label for="vin-search-box">Vin Search</label>
+	<input #searchBox id="vin-search-box" (input)="search(searchBox.value)" />
 
 	<ul class="search-result">
 		<li *ngFor="let vehicle of vehicles | async" >
