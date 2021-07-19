@@ -13,7 +13,10 @@
                         <option value="">Choose...</option>
 
                         <option *ngFor="let customer of customerArray">{{customer.id}}
-                            {{customer.firstName}}</option>
+                            {{customer.firstName}}
+                            {{customer.lastName}}
+                        
+                        </option>
 
                     </select>
                 </div>

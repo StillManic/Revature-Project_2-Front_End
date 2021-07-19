@@ -2,8 +2,8 @@
     <div class="row g-3">
 
         <div class="col-sm-6">
-            <label for="customer" class="form-label">Vin</label>
-           <select id="customer" name="customer" class="form-control" [formControl]="customer" (click)="getCustomer()" >
+            <label for="customer" class="form-label">Customer</label>
+           <select *ngIf="customers" id="customer" name="customer" class="form-control" [formControl]="customer" (click)="getCustomer()" >
                 <option>Select a customer</option>
                 <option *ngFor="let customer of customers">{{customer.id}} {{customer.firstName}} {{customer.lastName}}</option>
            </select>
@@ -63,9 +63,6 @@
             </div>
         </div>
 
-      
-        <!-- Add an option to add a vehcle with the customer -->
-        
     </div>
     <hr class="my-4">
     <button class="w-100 btn btn-success btn-lg"

@@ -22,6 +22,9 @@ import { VinsearchComponent } from './vinsearch/vinsearch.component';
 import { VinhistoryComponent } from './vinhistory/vinhistory.component';
 import { CustomerhistoryComponent } from './customerhistory/customerhistory.component';
 import { WorkOrderUpdateComponent } from './work-order-update/work-order-update.component';
+import { CustomerTableComponent } from './customer-table/customer-table.component';
+import { ViewVehiclesComponent } from './view-vehicles/view-vehicles.component';
+import { ViewCompletedWorkorderComponent } from './view-completed-workorder/view-completed-workorder.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,10 @@ import { WorkOrderUpdateComponent } from './work-order-update/work-order-update.
     VinsearchComponent,
     VinhistoryComponent,
     CustomerhistoryComponent,
-    WorkOrderUpdateComponent
+    WorkOrderUpdateComponent,
+    CustomerTableComponent,
+    ViewVehiclesComponent,
+    ViewCompletedWorkorderComponent
 
   ],
   imports: [

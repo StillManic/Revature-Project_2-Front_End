@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Customer } from '../interface/customer';
 import { FormControl } from '@angular/forms';
 import { CustomerService } from '../services/customer.service';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-add-customer-form',
   templateUrl: './add-customer-form.component.html',
@@ -9,7 +10,7 @@ import { CustomerService } from '../services/customer.service';
 })
 export class AddCustomerFormComponent implements OnInit {
 
-  constructor(private customerService: CustomerService) { }
+  constructor(private customerService: CustomerService, private route: Router) { }
 
   customer: Customer  = {
     firstName: '',
@@ -45,7 +46,9 @@ export class AddCustomerFormComponent implements OnInit {
     
     this.customerService.addCustomer(this.customer).subscribe(customer => console.log(customer))
     //Add the addCustomer service here
-    
+    setTimeout(() => {
+      this.route.navigate(['/addVehicle']);
+    }, 2000)
   }
   //create addVehicle function that turns addVheicle to true
   // addVehicleBool(): void {
