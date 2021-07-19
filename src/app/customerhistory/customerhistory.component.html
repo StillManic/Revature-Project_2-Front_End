@@ -9,7 +9,7 @@
                     <th scope="col">ID</th>
                     <th scope="col">Customer Name</th>
                     <th scope="col">Start Date</th>
-                    <th scope="col">Vehicle ID</th>
+                    <th scope="col">VIN</th>
                     <th scope="col">Total Cost</th>
                 </tr>
             </thead>
@@ -21,7 +21,7 @@
                     <td>{{workorder.id}}</td>
                     <td>{{workorder.vehicleId.customerId.firstName}} {{workorder.vehicleId.customerId.lastName}}</td>
                     <td>{{workorder.date}}</td>
-                    <td>{{workorder.vehicleId.id}}</td>
+                    <td>{{workorder.vehicleId.vin}}</td>
                     <td>${{workorder.cost}}</td>
                 </tr>
             </tbody>
