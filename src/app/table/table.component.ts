@@ -37,11 +37,10 @@ export class TableComponent implements OnInit {
 					}
 				});
         this.workOrders.sort((a: WorkOrder, b: WorkOrder) => {
-          let left = a.id ? a.id : -1;
-          let right = b.id ? b.id : -1;
-          if (left < 0) return 1;
-          if (right < 0) return -1;
-          return left - right;
+          if (a.id != undefined && b.id != undefined) {
+            return a.id - b.id;
+          }
+          return 0;
         })
       }
     )

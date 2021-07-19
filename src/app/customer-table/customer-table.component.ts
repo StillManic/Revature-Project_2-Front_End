@@ -17,6 +17,13 @@ export class CustomerTableComponent implements OnInit {
   customers: Customer[] = [];
 
   getAllCustomer(): void {
-    this.customerService.getAllCustomer().subscribe(customers => this.customers = customers);
+    this.customerService.getAllCustomer().subscribe(customers => {
+      this.customers = customers.sort((a, b) => {
+        if (a.id != undefined && b.id != undefined) {
+          return a.id - b.id;
+        }
+        return 0;
+      });
+    });
   }
 }

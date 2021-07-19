@@ -2,7 +2,7 @@
 <div class="table-responsive container-fluid">
     <h4>Customer Table</h4>
     <table class="table table-striped table-sm" >
-        <thead>
+        <thead class="text-center">
             <tr>
                 <!-- Insert Headers here  -->
                 <th scope="col">ID</th>
@@ -13,7 +13,7 @@
         </thead>
 
         
-        <tbody>
+        <tbody class="text-center">
             <!-- insert data into here when you get it -->
             <tr *ngFor="let customer of customers" routerLink="/viewCustomer/{{customer.id}}">
                 <td>{{customer.id}}</td>

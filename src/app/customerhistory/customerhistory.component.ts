@@ -12,7 +12,6 @@ import { WorkOrder } from '../interface/work-order';
 })
 export class CustomerhistoryComponent implements OnInit {
   workorders: WorkOrder[] = [];
-  woarray: WorkOrder[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -26,13 +25,18 @@ export class CustomerhistoryComponent implements OnInit {
 
   getWorkOrders(): void {
     const phone = parseInt(this.route.snapshot.paramMap.get('phone')!, 10);
-    this.workorderService.getWorkOrderByPhone(phone)
-      .subscribe(workorders => this.workorders = workorders);
-	for (let wo of this.workorders) {
-		if (wo.complete) {
-			this.woarray.push(wo);
-		}
-	}
+    console.log('phone: ' + phone);
+    this.workorderService.getWorkOrderByPhone(phone).subscribe(workorders => {
+      workorders.sort((a, b) => {
+        if (a.id != undefined && b.id != undefined) {
+          return a.id - b.id;
+        }
+        return 0;
+      });
+      for (let order of workorders) {
+        if (order.complete) this.workorders.push(order);
+      }
+    })
   }
 
   goBack(): void {

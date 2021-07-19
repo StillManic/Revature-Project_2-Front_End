@@ -57,6 +57,7 @@ export class WorkOrderService {
   }
   
   getWorkOrderByPhone(phone: number): Observable<WorkOrder[]> {
+    console.log('getting work orders by phone: ' + phone)
     return this.http.get<WorkOrder[]>(this.url + '/vehicle/customer/phone/' + phone, this.httpOptions).pipe(
       catchError(this.handleError<WorkOrder[]>(`getWorkOrder`, ))
     );
