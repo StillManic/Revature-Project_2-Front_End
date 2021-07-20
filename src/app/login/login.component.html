@@ -1,16 +1,14 @@
-<h2>Login Page</h2>
+<h2 class="text-danger">Login Page</h2>
 
 <div>
-  <label for="username">User Name: </label>
-  <input id="username" type='text' #userName />
-</div>
-<div>
-  <label for="password">Password: </label>
-  <input id="password" type='Password' #password />
-</div>
-<div>
+  <label class="text-danger"for="username">User Name: </label>
+  <input class="text-danger" id="username" #userName />
+  <br/>
+  <label class ="text-danger"for="password">Password: </label>
+  <input class="text-danger" id="password" #password />
+  <br/>
   <!-- (click) passes input value to add() and then clears the input -->
-  <button class="add-button" (click)="getLogin(userName.value, password.value); userName.value=''; password.value=''">
+  <button class="btn btn-danger text-dark add-button" (click)="getLogin(userName.value, password.value); userName.value=''; password.value=''">
     Login
   </button>
 </div>

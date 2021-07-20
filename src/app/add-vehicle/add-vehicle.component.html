@@ -2,8 +2,8 @@
     <div class="row g-3">
 
         <div class="col-sm-6">
-            <label for="customer" class="form-label">Customer</label>
-           <select *ngIf="customers" id="customer" name="customer" class="form-control" [formControl]="customer" (click)="getCustomer()" >
+            <label for="customer" class="form-label text-danger">Customer</label>
+           <select id="customer" name="customer" class="form-control text-danger bg-dark" [formControl]="customer" (click)="getCustomer()" >
                 <option>Select a customer</option>
                 <option *ngFor="let customer of customers">{{customer.id}} {{customer.firstName}} {{customer.lastName}}</option>
            </select>
@@ -14,8 +14,8 @@
 
         
         <div class="col-sm-6">
-            <label for="vin" class="form-label">Vin</label>
-            <input type="text" class="form-control" id="vin" placeholder="" value="" required=""
+            <label for="vin" class="form-label text-danger">Vin</label>
+            <input type="text" class="form-control bg-dark text-danger" id="vin" placeholder="" value="" required=""
             [formControl]="vin"
             >
             <div class="invalid-feedback">
@@ -24,8 +24,8 @@
         </div>
 
         <div class="col-sm-6">
-            <label for="make" class="form-label">Make</label>
-            <input type="text" class="form-control" id="lastName" placeholder="" value="" required="" 
+            <label for="make" class="form-label text-danger">Make</label>
+            <input type="text" class="form-control bg-dark text-danger" id="lastName" placeholder="" value="" required="" 
             [formControl]="make"
             >
             <div class="invalid-feedback">
@@ -34,8 +34,8 @@
         </div>
 
         <div class="col-sm-6">
-            <label for="model" class="form-label">Model</label>
-            <input type="text" class="form-control" id="model" placeholder="" value="" required=""
+            <label for="model" class="form-label text-danger">Model</label>
+            <input type="text" class="form-control text-danger bg-dark" id="model" placeholder="" value="" required=""
             [formControl]="model"
             >
             <div class="invalid-feedback">
@@ -43,8 +43,8 @@
             </div>
         </div>
         <div class="col-sm-6">
-            <label for="year" class="form-label">Year</label>
-            <input type="text" class="form-control" id="year" placeholder="" value="" required="" 
+            <label for="year" class="form-label text-danger">Year</label>
+            <input type="text" class="form-control text-danger bg-dark" id="year" placeholder="" value="" required="" 
             [formControl]="year"
             >
             <div class="invalid-feedback">
@@ -54,8 +54,8 @@
         </div>
 
         <div class="col-sm-6">
-            <label for="mileage" class="form-label">Mileage</label>
-            <input type="text" class="form-control" id="mileage" placeholder="" value="" required="" 
+            <label for="mileage" class="form-label text-danger">Mileage</label>
+            <input type="text" class="form-control text-danger bg-dark" id="mileage" placeholder="" value="" required="" 
             [formControl]="mileage"
             >
             <div class="invalid-feedback">
@@ -63,9 +63,12 @@
             </div>
         </div>
 
+      
+        <!-- Add an option to add a vehcle with the customer -->
+        
     </div>
     <hr class="my-4">
-    <button class="w-100 btn btn-success btn-lg"
+    <button class="w-100 btn btn-danger text-dark btn-lg"
     (click)="addVehicle()"
        >Add Vehicle</button>
 </form> 

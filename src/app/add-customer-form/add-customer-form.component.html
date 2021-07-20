@@ -1,11 +1,11 @@
 <div class="row justify-content-center">
     <div class="col-6 text-center ">
-        <h4 class="mb-3">Add Customer</h4>
+        <h4 class="mb-3 text-danger">Add Customer</h4>
         <form class="needs-validation" novalidate="">
             <div class="row g-3">
                 <div class="col-sm-6">
-                    <label for="firstName" class="form-label">First name</label>
-                    <input type="text" class="form-control" id="firstName" placeholder="" value="" required=""
+                    <label for="firstName" class="form-label text-danger">First name</label>
+                    <input type="text" class="form-control bg-dark text-danger" id="firstName" placeholder="" value="" required=""
                         [formControl]="firstName">
                     <div class="invalid-feedback">
                         Valid first name is required.
@@ -13,8 +13,8 @@
                 </div>
 
                 <div class="col-sm-6">
-                    <label for="lastName" class="form-label">Last name</label>
-                    <input type="text" class="form-control" id="lastName" placeholder="" value="" required=""
+                    <label for="lastName" class="form-label text-danger">Last name</label>
+                    <input type="text" class="form-control bg-dark text-danger" id="lastName" placeholder="" value="" required=""
                         [formControl]="lastName">
                     <div class="invalid-feedback">
                         Valid last name is required.
@@ -22,16 +22,16 @@
                 </div>
 
                 <div class="col-sm-6">
-                    <label for="phoneNumber" class="form-label">Phone Number</label>
-                    <input type="text" class="form-control" id="lastName" placeholder="" value="" required=""
+                    <label for="phoneNumber" class="form-label text-danger">Phone Number</label>
+                    <input type="text" class="form-control text-danger bg-dark" id="lastName" placeholder="" value="" required=""
                         [formControl]="phoneNumber">
                     <div class="invalid-feedback">
                         Valid phone number name is required.
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="text" class="form-control" id="lastName" placeholder="" value="" required=""
+                    <label for="email" class="form-label text-danger">Email</label>
+                    <input type="text" class="form-control text-danger bg-dark" id="lastName" placeholder="" value="" required=""
                         [formControl]="email">
                     <div class="invalid-feedback">
                         Valid email name is required.
@@ -42,7 +42,7 @@
 
             </div>
             <hr class="my-4">
-            <button class="w-100 btn btn-primary btn-lg" (click)="addCustomer()">Add Customer</button>
+            <button class="w-100 btn btn-danger text-dark btn-lg" (click)="addCustomer()" routerLink="/addVehicle">Add Customer</button>
         </form>
         <hr class="my-4">
 

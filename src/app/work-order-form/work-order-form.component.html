@@ -1,22 +1,19 @@
 <div class="row justify-content-center">
     <div class="col-6 text-center ">
-        <h4 class="mb-3">New Work Order Form</h4>
+        <h4 class="mb-3 text-danger">New Work Order Form</h4>
         <form class="needs-validation" novalidate="" name="wokrOrder">
             <div class="row g-3">
 
                 <div class="col-sm-6">
-                    <label class="form-label" for="customerSelect">Select Cusotmer</label>
+                    <label class="form-label text-danger" for="customerSelect">Select Cusotmer</label>
 
-                    <select class="form-select" id="country" required="" [formControl]="customer" name="countrySelect"
+                    <select class="form-select bg-dark text-danger" id="country" required="" [formControl]="customer" name="countrySelect"
                         (click)="getVehicleByCustomer()">
                         <!-- Add in customer data -->
                         <option value="">Choose...</option>
 
                         <option *ngFor="let customer of customerArray">{{customer.id}}
-                            {{customer.firstName}}
-                            {{customer.lastName}}
-                        
-                        </option>
+                            {{customer.firstName}}</option>
 
                     </select>
                 </div>
@@ -24,13 +21,13 @@
 
                 <!-- Add Data  -->
                 <div class="col-sm-6">
-                    <label for="vehicleId" class="form-label">Vehicle ID</label>
+                    <label for="vehicleId" class="form-label text-danger">Vehicle ID</label>
                     <!-- Add in vehicle data -->
 
-                    <select class="form-select" id="country" required="" [formControl]="vehicleId" name="vehicleSelect"
+                    <select class="form-select bg-dark text-danger" id="country" required="" [formControl]="vehicleId" name="vehicleSelect"
                         *ngIf="customer.value" (click)="setVehicleId()">
                         <option default>Choose...</option>
-                        <option *ngFor="let vehicle of vehicleArray">ID: {{vehicle.id}} VIN: {{vehicle.vin}}</option>
+                        <option *ngFor="let vehicle of vehicleArray">{{vehicle.id}}</option>
                     </select>
                     <div class="invalid-feedback">
                         Valid ID is required.
@@ -38,11 +35,11 @@
                 </div>
 
                 <div class="col-sm-6">
-                    <label for="employeeId" class="form-label">Employee ID</label>
-                    <select class="form-select" id="employeeId" placeholder="" value="" required=""
+                    <label for="employeeId" class="form-label text-danger">Employee ID</label>
+                    <select class="form-select bg-dark text-danger" id="employeeId" placeholder="" value="" required=""
                         [formControl]="employeeId" name="employeeId" (click)="setEmployeeId()">
                         <option value="1">Choose</option>
-                        <option *ngFor="let employee of employees" >{{employee.id}} {{employee.username}} </option>
+                        <option *ngFor="let employee of employees" >{{employee.id}} </option>
                     </select>
                     <div class="invalid-feedback">
                         Valid Employee ID is required.
@@ -50,8 +47,8 @@
                 </div>
 
                 <div class="col-sm-6">
-                    <label for="startDate" class="form-label">Start Date</label>
-                    <input type="date" class="form-control" id="startDate" placeholder="" value="" required=""
+                    <label for="startDate" class="form-label text-danger">Start Date</label>
+                    <input type="date" class="form-control  bg-dark text-danger" id="startDate" placeholder="" value="" required=""
                         [formControl]="startDate" name="startDate">
                     <div class="invalid-feedback">
                         Valid Start Date is required.
@@ -59,8 +56,8 @@
                 </div>
 
                 <div class="col">
-                    <label for="description" class="form-label">Description</label>
-                    <input type="text" class="form-control" id="description" placeholder="" value="" required=""
+                    <label for="description" class="form-label text-danger">Description</label>
+                    <input type="text" class="form-control text-danger bg-dark" id="description" placeholder="" value="" required=""
                         [formControl]="description" />
                     <div class="invalid-feedback">
                         Valid descrition is required.
@@ -68,10 +65,10 @@
                 </div>
             </div>
             <hr class="my-4">
-            <label class="form-label" for="customerSelect">Select Parts</label>
+            <label class="form-label text-danger" for="customerSelect">Select Parts</label>
             <ul style="list-style: none;">
                 <li>
-                    <select class="form-select" multiple aria-label="multiple select example" name="partSelect"
+                    <select class="form-select bg-dark text-danger" multiple aria-label="multiple select example" name="partSelect"
                         [formControl]="partsSelect" (click)="calculateTotal()" *ngIf="parts">
 
                         <option *ngFor="let part of parts">{{part.id}} {{part.name}} {{part.price}}</option>
@@ -79,8 +76,8 @@
                 </li>
             </ul>
             <hr class="my-4">
-            <h4 ngFor="">Total Cost: ${{total}}</h4>
-            <button class="w-100 btn btn-primary btn-lg" (click)="addWorkOrder()">Submit
+            <h4 class="text-danger" ngFor="">Total Cost: ${{total}}</h4>
+            <button class="w-100 btn btn-danger text-dark btn-lg" (click)="addWorkOrder()">Submit
                 Form</button>
         </form>
 

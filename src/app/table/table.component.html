@@ -1,26 +1,26 @@
 <div class="table-responsive container-fluid">
-    <h4>Current Work Orders</h4>
+    <h4 class="text-danger">Current Work Orders</h4>
     <table class="table table-striped table-sm ">
-        <thead class="text-center">
+        <thead>
             <tr>
                 <!-- Insert Headers here  -->
-                <th scope="col">ID</th>
-                <th scope="col">Customer Name</th>
-                <th scope="col">Start Date</th>
-                <th scope="col">Vehicle ID</th>
-                <th scope="col">Total Cost</th>
+                <th class="text-danger"scope="col">ID</th>
+                <th class="text-danger"scope="col">Customer Name</th>
+                <th class="text-danger"scope="col">Start Date</th>
+                <th class="text-danger"scope="col">Vehicle ID</th>
+                <th class="text-danger"scope="col">Total Cost</th>
             </tr>
         </thead>
 
         
-        <tbody class="text-center">
+        <tbody>
             <!-- insert data into here when you get it -->
             <tr *ngFor="let workOrder of workOrders" routerLink="/viewOrder/{{workOrder.id}}">
-                <td>{{workOrder.id}}</td>
-                <td>{{workOrder.vehicleId.customerId.firstName}} {{workOrder.vehicleId.customerId.lastName}}</td>
-                <td>{{workOrder.date}}</td>
-                <td>{{workOrder.vehicleId.id}}</td>
-                <td>${{workOrder.cost}}</td>
+                <td class="text-danger">{{workOrder.id}}</td>
+                <td class="text-danger">{{workOrder.vehicleId.customerId.firstName}} {{workOrder.vehicleId.customerId.lastName}}</td>
+                <td class="text-danger">{{workOrder.date}}</td>
+                <td class="text-danger">{{workOrder.vehicleId.id}}</td>
+                <td class="text-danger">{{workOrder.cost}}</td>
             </tr>
         </tbody>
     </table>
