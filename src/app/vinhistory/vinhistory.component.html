@@ -1,9 +1,9 @@
 <div class="workorders">
-    <h2>Vehicle Work Orders</h2>
-    <button (click)="goBack()"class="btn btn-primary">Back</button>
+    <h2 class="text-danger">Vehicle Work Orders</h2>
+    <button (click)="goBack()"class="btn btn-danger text-dark">Back</button>
 	<div class="row">
 	    <table class="wo-list">
-	        <thead class="text-center">
+	        <thead class="text-center text-danger">
 	            <tr>
 	                <!-- Insert Headers here  -->
 	                <th scope="col">ID</th>
@@ -15,7 +15,7 @@
 	        </thead>
 	
 	        
-	        <tbody class="text-center">
+	        <tbody class="text-center text-danger">
 	            <!-- insert data into here when you get it -->
 	            <tr *ngFor="let workorder of workorders" routerLink="/viewOrder/{{workorder.id}}">
 	                <td>{{workorder.id}}</td>
