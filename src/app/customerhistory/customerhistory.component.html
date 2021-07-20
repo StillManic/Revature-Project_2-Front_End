@@ -1,10 +1,10 @@
 <div class="workorders">
-    <h2>Customer Work Orders</h2>
-    <button (click)="goBack()" class="btn btn-primary">Back</button>
+    <h2 class="text-danger">Customer Work Orders</h2>
+    <button (click)="goBack()" class="btn btn-danger text-dark">Back</button>
     <div class="row">
         <table class="wo-list">
             <thead class="text-center">
-                <tr>
+                <tr class="text-danger">
                     <!-- Insert Headers here  -->
                     <th scope="col">ID</th>
                     <th scope="col">Customer Name</th>
@@ -17,7 +17,7 @@
             
             <tbody class="text-center">
                 <!-- insert data into here when you get it -->
-                <tr *ngFor="let workorder of workorders" routerLink="/viewOrder/{{workorder.id}}">
+                <tr *ngFor="let workorder of workorders" class="text-danger" routerLink="/viewOrder/{{workorder.id}}">
                     <td>{{workorder.id}}</td>
                     <td>{{workorder.vehicleId.customerId.firstName}} {{workorder.vehicleId.customerId.lastName}}</td>
                     <td>{{workorder.date}}</td>
