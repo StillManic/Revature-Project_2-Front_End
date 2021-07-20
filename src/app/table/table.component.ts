@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { WorkOrder } from '../interface/work-order';
 import { WorkOrderService } from '../services/work-order.service';
 import { ActivatedRoute } from '@angular/router';
@@ -10,39 +10,45 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class TableComponent implements OnInit {
 
-  constructor(private workOrderService: WorkOrderService, private route: ActivatedRoute) { }
+  constructor(private workOrderService: WorkOrderService, private route: ActivatedRoute, private elm: ElementRef) {}
 
-
-  allworkOrders: WorkOrder[] = [];
   workOrders: WorkOrder[] = [];
+  list: string = 'open';
 
   id: any;
   ngOnInit(): void {
-    this.getAllWorkOrders();
+    this.list = this.elm.nativeElement.getAttribute('list');
+    
+    if (this.list == 'open') {
+      this.getAllWorkOrders();
+    } else if (this.list == 'completed') {
+      this.getCompltedWorkOrders();
+    }
+
     this.id = Number(this.route.snapshot.paramMap.get('id'))
-
-
   }
 
   getAllWorkOrders(): void {
-
     this.workOrderService.getAllWorkOrders().subscribe(
-      workOrders => {
-        let ran = workOrders[0].vehicleId.customerId.firstName;
-        console.log(ran)       
-        this.allworkOrders = workOrders
-        this.allworkOrders.forEach( (element) => {
-					if (element.complete == false) {
-						 this.workOrders.push(element)
-					}
-				});
-        this.workOrders.sort((a: WorkOrder, b: WorkOrder) => {
-          if (a.id != undefined && b.id != undefined) {
-            return a.id - b.id;
-          }
-          return 0;
-        })
-      }
-    )
+      workOrders => this.workOrders = workOrders.sort((a, b) => {
+        if (a.id != undefined && b.id != undefined) {
+          return a.id - b.id;
+        }
+        return 0;
+      }),
+      error => console.log(error)
+    );
+  }
+
+  getCompltedWorkOrders(): void {
+    this.workOrderService.getCompletedWorkOrder().subscribe(
+      workOrders => this.workOrders = workOrders.sort((a, b) => {
+        if (a.id != undefined && b.id != undefined) {
+          return a.id - b.id;
+        }
+        return 0;
+      }),
+      error => console.log(error)
+    );
   }
 }

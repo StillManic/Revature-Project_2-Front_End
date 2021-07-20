@@ -38,14 +38,24 @@ export class ViewCustomerComponent implements OnInit {
 
   getWorkOrderByCustomerId(): void {
     this.workOrderService.getWorkOrderByCustomerId(this.id).subscribe(workOrder => {
-      this.workOrder = workOrder
+      this.workOrder = workOrder.sort((a, b) => {
+        if (a.id != undefined && b.id != undefined) {
+          return a.id - b.id;
+        }
+        return 0;
+      })
       console.log(workOrder)
     });
   }
 
   getVehicleByCustomerId(id: number): void {
     this.vehicleService.getVehicleByCustomerId(id).subscribe(vehicle => {
-      this.vehicles = vehicle.sort();
+      this.vehicles = vehicle.sort((a, b) => {
+        if (a.id != undefined && b.id != undefined) {
+          return a.id - b.id;
+        }
+        return 0;
+      });
     });
   }
 }

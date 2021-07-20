@@ -3,7 +3,7 @@
     <h4>All Vehicles</h4>
     <table class="table table-striped table-sm ">
         <thead>
-            <tr>
+            <tr class="text-danger">
                 <!-- Insert Headers here  -->
                 <th scope="col">ID</th>
                 <th scope="col">Customer</th>
@@ -17,7 +17,7 @@
         
         <tbody>
             <!-- insert data into here when you get it -->
-            <tr *ngFor="let vehicle of vehicles" >
+            <tr class="text-danger" *ngFor="let vehicle of vehicles" >
                 <td>{{vehicle.id}}</td>
                 <td>{{vehicle.customerId.firstName}} {{vehicle.customerId.lastName}}</td>
                 <td>{{vehicle.make}}</td>
