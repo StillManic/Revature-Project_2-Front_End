@@ -20,9 +20,11 @@ export class TableComponent implements OnInit {
     this.list = this.elm.nativeElement.getAttribute('list');
     
     if (this.list == 'open') {
-      this.getAllWorkOrders();
+      this.getOpenWorkOrders();
     } else if (this.list == 'completed') {
       this.getCompltedWorkOrders();
+    } else if (this.list == 'all') {
+      this.getAllWorkOrders();
     }
 
     this.id = Number(this.route.snapshot.paramMap.get('id'))
@@ -49,6 +51,17 @@ export class TableComponent implements OnInit {
         return 0;
       }),
       error => console.log(error)
+    );
+  }
+
+  getOpenWorkOrders(): void {
+    this.workOrderService.getOpenWorkOrders().subscribe(
+      workOrders => this.workOrders = workOrders.sort((a, b) => {
+        if (a.id != undefined && b.id != undefined) {
+          return a.id - b.id;
+        }
+        return 0;
+      })
     );
   }
 }

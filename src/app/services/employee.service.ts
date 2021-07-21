@@ -12,7 +12,7 @@ export class EmployeeService {
   constructor(private http: HttpClient, private cookieService: CookieService) { }
 
   // url = `http://localhost:8080/employees`
-  url: string = `http://ec2-54-193-239-17.us-west-1.compute.amazonaws.com:8080/Project_2/employees`;
+  url: string = `http://ec2-54-67-83-160.us-west-1.compute.amazonaws.com:8080/Project%202/employees`;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': this.cookieService.get('auth') })

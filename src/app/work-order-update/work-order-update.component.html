@@ -1,48 +1,51 @@
 <div class="row justify-content-center">
     <div class="col-6 text-center">
-        <h4 class="mb-3">Work Order</h4>
+        <h4 class="mb-3 text-danger">Work Order</h4>
         <div class="row">
-            <button (click)="goBack()" class="col-sm-3 btn btn-primary">Back</button>
-            <button (click)="save()" class="col-sm-3 btn btn-primary">Save</button>
-            <button (click)="reset()" class="col-sm-3 btn btn-primary">Reset Changes</button>
-            <button (click)="complete()" class="col-sm-3 btn btn-primary">Complete Work Order</button>
+            <button (click)="goBack()" class="col-sm-3 btn btn-danger text-dark">Back</button>
+            <button (click)="save()" class="col-sm-3 btn btn-danger text-dark">Save</button>
+            <button (click)="reset()" class="col-sm-3 btn btn-danger text-dark">Reset Changes</button>
+            <button (click)="complete()" class="col-sm-3 btn btn-danger text-dark">Complete Work Order</button>
         </div>
         <div class="row g-3">
             <div class="col-sm-6" *ngIf="customer" routerLink="/viewCustomer/{{customer.id}}">
-                <label for="customer" class="form-label h3">Customer</label>
-                <p id="customer">{{ customer_name }}</p>
+                <label for="customer" class="text-danger form-label h3">Customer</label>
+                <p class="text-danger" id="customer">{{ customer_name }}</p>
             </div>
 
             <div class="col-sm-6">
-                <label for="vehicle" class="form-label h3">Vehicle</label>
-                <p id="vehicle">{{ vehicle_descriptor }}</p>
+                <label for="vehicle" class="text-danger form-label h3">Vehicle</label>
+                <p class="text-danger" id="vehicle">{{ vehicle_descriptor }}</p>
             </div>
         </div>
 
         <div class="row g-3">
             <div class="col-sm-6">
-                <label for="start_date" class="form-label h3">Start Date</label>
-                <p id="start_date">{{ start_date }}</p>
+                <label for="start_date" class="text-danger form-label h3">Start Date</label>
+                <p class="text-danger" id="start_date">{{ start_date }}</p>
             </div>
 
             <div class="col-sm-6">
-                <label for="cost" class="form-label h3">Cost</label>
-                <p id="cost">${{ cost }}</p>
+                <label for="cost" class="text-danger form-label h3">Cost</label>
+                <p class="text-danger" id="cost">${{ cost }}</p>
             </div>
         </div>
 
         <div class="row g-3">
             <div class="col-sm-12">
-                <label for="description" class="form-label h3">Description</label>
-                <input type="text" id="description" value="{{ description }}">
+                <label for="description" class="text-danger form-label h3">Description</label>
+            </div>
+            <div class="col-sm-12">
+                <!-- <input class="text-danger" type="text" id="description" value="{{ description }}"> -->
+                <textarea name="description" id="description" class="text-danger" cols="60" rows="3">{{ description }}</textarea>
             </div>
         </div>
 
         <div class="row g-3">
-        	<label for='part-list'>Current Parts</label>
+        	<label class="text-danger" for='part-list'>Current Parts</label>
             <table class="part-list">
                 <thead>
-                    <tr>
+                    <tr class="text-danger">
                         <!-- Insert Headers here  -->
                         <th scope="col">ID</th>
                         <th scope="col">Name</th>
@@ -53,7 +56,7 @@
                 
                 <tbody>
                     <!-- insert data into here when you get it -->
-                    <tr *ngFor="let oldpart of oldparts"(click)="deleteoldpart(oldpart)">
+                    <tr class="text-danger" *ngFor="let oldpart of oldparts"(click)="deleteoldpart(oldpart)">
                         <td>{{oldpart.part.id}}</td>
                         <td>{{oldpart.part.name}}</td>
                         <td>{{oldpart.part.price}}</td>
@@ -66,11 +69,11 @@
             <br>
             <br>
             <br>
-            <label for='add-parts'>Add Parts</label>
+            <label class="text-danger" for='add-parts'>Add Parts</label>
             <table class="add-parts">
                 <tbody>
                     <!-- insert data into here when you get it -->
-                    <tr *ngFor="let newpart of newparts" (click)="deletenewpart(newpart)">
+                    <tr class="text-danger" *ngFor="let newpart of newparts" (click)="deletenewpart(newpart)">
                         <td>{{newpart.id}}</td>
                         <td>{{newpart.name}}</td>
                         <td>{{newpart.price}}</td>
@@ -80,13 +83,13 @@
             </table>
 			<br>
             <div id="search-component">
-                <label for="search-box">Part Search</label>
-                <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+                <label class="text-danger" for="search-box">Part Search</label>
+                <input #searchBox class="text-danger" id="search-box" (input)="search(searchBox.value)" />
             
                 <ul class="search-result" style="list-style: none;">
                     <!-- Figure out how to get rid of the dot that is displayed to the left of the buttons (it has to do with the <li> tag) -->
                     <li *ngFor="let part of searchedparts | async" >
-                        <button (click)="addpart(part)" class="btn btn-primary">{{part.name}}</button>
+                        <button (click)="addpart(part)" class="btn btn-danger text-dark">{{part.name}}</button>
                     </li>
                 </ul>
             </div>
