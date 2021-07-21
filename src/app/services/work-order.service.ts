@@ -13,7 +13,7 @@ export class WorkOrderService {
   constructor(private http: HttpClient, private cookieService: CookieService) { }
 
   // url = 'http://localhost:8080/workorders';
-  url: string = `http://ec2-54-193-239-17.us-west-1.compute.amazonaws.com:8080/Project_2/workorders`;
+  url: string = `http://ec2-54-67-83-160.us-west-1.compute.amazonaws.com:8080/Project%202/workorders`;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': this.cookieService.get('auth') })
@@ -68,6 +68,10 @@ export class WorkOrderService {
     return this.http.get<WorkOrder[]>(this.url + '/complete', this.httpOptions).pipe(
       catchError(this.handleError<WorkOrder[]>(`getCompletedWorkOrder`, []))
     );
+  }
+
+  getOpenWorkOrders(): Observable<WorkOrder[]> {
+    return this.http.get<WorkOrder[]>(this.url + '/pending', this.httpOptions);
   }
 
 
