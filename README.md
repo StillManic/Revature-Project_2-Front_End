@@ -45,7 +45,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 - Employees can view the work history for a vehicle
 - Employees can view the business history for the customer
 
-#Technology
+# Technology
 -Angular
 -TypeScript
 -Dependency Injection
